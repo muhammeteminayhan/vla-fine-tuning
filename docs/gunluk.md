@@ -423,3 +423,38 @@ rapora yanlış bir açıklama yazacaktım.
 
 **Sırada ne var.** Adım sayısı kararı — 2000 yetmiyor olabilir, çünkü K=40 için
 daha yarım epoch bile değil.
+
+---
+
+### Blok 11 — İkinci pilot ve adım sayısı kararı
+
+**Ne yaptım.** Aynı split'i (K=40 seed0) 6000 adımda koşturup final
+checkpoint'leri karşılaştırdım: 2000 adım %48, 6000 adım **%72**. 6000'de karar
+kıldım ve gece boyu koşacak driver'ı başlattım.
+
+**Neden ayrı bir koşu gerekti.** Elimde zaten 2000 adımlık koşunun ara
+checkpoint'leri vardı (500/1000/1500/2000). "Daha çok adım daha mı iyi"
+sorusunu onlardan cevaplayamazdım, çünkü LeRobot LR schedule'ını **adım
+bütçesine göre otomatik ölçekliyor**. 2000 adımlık koşunun 1500. adımı ile
+6000 adımlık koşunun 1500. adımı tamamen farklı learning rate'lerde. Yani ara
+checkpoint'ler evrensel bir eğitim eğrisi değil, o koşuya özel bir schedule
+üzerindeki noktalar.
+
+Bunun güzel bir yan sonucu var: her koşu tam bir warmup→decay döngüsü olduğu
+için **final checkpoint doğal ve önceden belirlenmiş seçim**. "Hangi checkpoint
+en iyi skoru verdiyse onu rapor et" gibi bir cherry-picking tuzağına düşmüyoruz.
+
+**Yeni kavram — donuk adapter tuzağı.** 2. aşama, 1. aşamanın LoRA
+checkpoint'inden devam edecek. PEFT adapter'ları `from_pretrained` ile sık sık
+**donuk** (eğitilemez) yüklenir; öyle olsaydı bütün 2. aşama koşuları hiçbir şey
+eğitmez, sessizce 1. aşama modelini geri döndürür ve elimizde tamamen düz,
+tamamen anlamsız bir eğri olurdu — üstelik hata mesajı olmadan. Bunu akıl
+yürüterek değil, gerçek bir checkpoint'ten 20 adım koşturup log'daki
+`num_learnable_params=2970624` satırını okuyarak doğruladım. 3M, yani sıfır
+değil, adapter eğitilebilir.
+
+Genel ders: "sessizce yanlış çalışan" senaryoların listesini çıkarıp her birini
+tek tek kapatmak, bu projede en çok zaman kazandıran alışkanlık oldu.
+
+**Sırada ne var.** Driver koşuyor: 1. aşama (6000 adım) → seed 0'ın K=5/10/20/40
+koşuları, her birinin ardından eval.
