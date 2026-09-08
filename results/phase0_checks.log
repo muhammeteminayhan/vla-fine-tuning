@@ -1,0 +1,118 @@
+##### PHASE 0 ENVIRONMENT CHECKS #####
+date        : 2026-09-08T21:27:42+03:00
+host        : eminayhan
+conda env   : lerobot
+python      : Python 3.12.14
+MUJOCO_GL   : egl
+lerobot src : /home/eminayhan/lerobot @ 2774d9bddcbbda50e697e162e89e7eaada8d7105
+
+##### CHECKS 1-4 (driver / kernel module / torch+sm_120 / VRAM) #####
+======================================================================
+CHECK 1 - nvidia-smi
+======================================================================
+name, driver_version, compute_cap, memory.total [MiB]
+NVIDIA GeForce RTX 5060 Laptop GPU, 595.84, 12.0, 8151 MiB
+
+======================================================================
+CHECK 2 - open kernel module (expect: Dual MIT/GPL)
+======================================================================
+version:        595.84
+license:        Dual MIT/GPL
+
+======================================================================
+CHECK 3 - torch / CUDA / compute capability
+======================================================================
+torch.__version__            = 2.11.0+cu130
+torch.version.cuda           = 13.0
+torch.cuda.is_available()    = True
+torch.cuda.get_device_name() = NVIDIA GeForce RTX 5060 Laptop GPU
+get_device_capability()      = (12, 0)
+torch.cuda.get_arch_list()   = ['sm_75', 'sm_80', 'sm_86', 'sm_90', 'sm_100', 'sm_120']
+this GPU needs               = sm_120
+sm_120 in arch_list           = True
+
+-- real GPU matmul (this is what actually proves sm_120 works) --
+fp32 matmul 4096x4096 -> (4096, 4096), sum=-529245.7500
+bf16 matmul 4096x4096 -> (4096, 4096), dtype=torch.bfloat16
+
+======================================================================
+CHECK 4 - free VRAM (this is the training budget)
+======================================================================
+mem_get_info() free  =  7,901,282,304 B = 7.359 GiB
+mem_get_info() total =  8,082,096,128 B = 7.527 GiB
+used by others       = 172.4 MiB
+
+##### CHECK 5 (MuJoCo EGL render benchmark) #####
+MUJOCO_GL = egl
+mujoco    = 3.8.1
+
+-- GL context (the decisive evidence) --
+  GL_VENDOR    = NVIDIA Corporation
+  GL_RENDERER  = NVIDIA GeForce RTX 5060 Laptop GPU/PCIe/SSE2
+  GL_VERSION   = 4.6.0 NVIDIA 595.84
+
+  software rasteriser detected = False
+
+-- rendering 1000 frames at 256x256 --
+  elapsed      = 0.181 s
+  render FPS   = 5539.1
+  ms per frame = 0.181
+  frame shape  = (256, 256, 3), dtype=uint8, mean=122.39 (0.00 would mean a blank image)
+
+  step+render FPS = 4999.1 (0.200 s for 1000 iters)
+
+VERDICT: PASS - GPU rendering via EGL
+
+##### CHECK 6 (one LIBERO episode end to end) #####
+Creating LIBERO envs | suites=['libero_object'] | n_envs(per task)=1 | init_states=True
+Restricting to task_ids=[0]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Built vec env | suite=libero_object | task_id=0 | n_envs=1
+Local assets not found. Downloading from HuggingFace Hub...
+Assets already downloaded at /home/eminayhan/.cache/libero/assets
+
+=== EPISODE RESULT ===
+{
+  "suite": "libero_object",
+  "task_id": 0,
+  "task": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+  "seed": 42,
+  "steps": 300,
+  "terminated": false,
+  "truncated": false,
+  "success": false,
+  "frames_recorded": 301,
+  "frame_shape": [
+    256,
+    256,
+    3
+  ],
+  "wall_clock_s": 3.065,
+  "env_steps_per_s": 97.9,
+  "sim_speed_vs_realtime": 4.89,
+  "video": "assets/phase0_libero_episode.mp4",
+  "video_bytes": 158143
+}
+
+##### INSTALLED VERSIONS #####
+lerobot       = 0.6.2
+torch         = 2.11.0
+torchvision   = 0.26.0
+torchcodec    = 0.11.1
+hf-libero     = 0.1.4
+robosuite     = 1.4.0
+robomimic     = 0.2.0
+bddl          = 1.0.1
+mujoco        = 3.8.1
+peft          = 0.20.0
+transformers  = 5.5.4
+gymnasium     = 1.3.0
+accelerate    = 1.14.0
+numpy         = 2.2.6
+wandb         = 0.27.2
+num2words     = 0.5.14
+hf-egl-probe  = 1.0.2
+egl_probe     = 1.0.2
+ffmpeg        = ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers
+
+##### END #####
