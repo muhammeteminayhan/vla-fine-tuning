@@ -1,0 +1,42 @@
+{
+  "source": "results/batch_size_sweep/results.json",
+  "plateau_samples_per_s": 22.93,
+  "assumed_batch_size": 16,
+  "frames_per_run": {
+    "5": 7377,
+    "10": 14754,
+    "20": 29508,
+    "40": 59017
+  },
+  "stage1_frames": 206481,
+  "scenarios": {
+    "docs default (100k steps)": {
+      "steps": 100000,
+      "h_per_run": 19.39,
+      "h_12_runs": 232.6,
+      "h_stage1": 38.8,
+      "h_total": 271.4
+    },
+    "20k steps": {
+      "steps": 20000,
+      "h_per_run": 3.88,
+      "h_12_runs": 46.5,
+      "h_stage1": 7.8,
+      "h_total": 54.3
+    },
+    "10k steps": {
+      "steps": 10000,
+      "h_per_run": 1.94,
+      "h_12_runs": 23.3,
+      "h_stage1": 3.9,
+      "h_total": 27.1
+    },
+    "5k steps": {
+      "steps": 5000,
+      "h_per_run": 0.97,
+      "h_12_runs": 11.6,
+      "h_stage1": 1.9,
+      "h_total": 13.6
+    }
+  }
+}

@@ -341,3 +341,42 @@ nerede doyuma ulaştığını değiştirmiyor** — asıl bilimsel sonuç bundan
 
 **Sırada ne var.** Faz 3, ama önce §6'daki compute riskini konuşmamız lazım:
 13 eğitim koşusu var ve kendi throughput'umuzu henüz ölçmedik.
+
+---
+
+### Blok 9 — Faz 3 adım 1: batch size ve throughput ölçümü
+
+**Ne yaptım.** `batch_size ∈ {1,2,4,8,16,32,64}` için LoRA fine-tune koşturup her
+birinde peak VRAM ve throughput ölçtüm. 64'te OOM aldım — bu aramanın hedefiydi,
+gizlenecek bir hata değil. Sonra ölçülen throughput'u Faz 3'ün wall-clock
+bütçesine çevirdim.
+
+**Neden böyle.** Faz 2'de compute riskini "ölçülmedi" diye açık bırakmıştım.
+LeRobot dokümanının A100 sayılarıyla tahmin yürütmek yerine kendi kartımızda
+ölçtüm, çünkü A100 ile laptop 5060 arasındaki farkı tahmin etmek tam olarak
+CLAUDE.md'nin yasakladığı şey.
+
+Sweep'i bf16 ile koştum çünkü gerçekten kullanacağımız ayar o (Faz 0'da sm_120'de
+bf16 matmul'ün çalıştığını zaten doğrulamıştık). `env_eval_freq`'i 0'a çektim —
+varsayılanı 20000 ve eğitim ortasında sim eval başlatıp ölçümü kirletirdi.
+
+**Sürpriz sonuç.** Throughput **batch_size=4'te doyuyor**: 4'ten 32'ye çıkmak
+samples/s'i artırmıyor (23.3 → 22.3) ama VRAM'i 1895'ten 7071 MiB'e çıkarıyor.
+GPU bs=4'te zaten doymuş; daha büyük batch sadece bellek yakıyor. "Daha büyük
+batch daha hızlıdır" sezgisi burada yanlış — o sezgi GPU'nun *doymadığı*
+rejimde geçerli.
+
+**Yeni kavram — LoRA'nın gerçekte ne eğittiği, sayıyla.** Eğitim logu şunu
+bastı: `num_learnable_params=2970624 (3M)`, `num_total_params=453016800 (453M)`.
+Yani LoRA parametrelerin **%0.66'sını** eğitiyor. Geri kalan 450M donuk.
+Mekanizma şu: bir ağırlık matrisi W'yi güncellemek yerine, yanına iki küçük
+matris (A ve B) ekliyorsun ve W + BA kullanıyorsun; B r×d, A d×r boyutunda ve
+r (rank) çok küçük (bizde 64). Eğitilen sadece A ve B. Bu yüzden 7.36 GiB'lik
+bir kartta 453M parametreli bir modeli fine-tune edebiliyoruz — optimizer
+state (Adam için parametre başına 2 ek tensor) sadece 3M parametre için
+tutuluyor, 453M için değil. Bellek tasarrufu asıl buradan geliyor, ağırlıkların
+kendisinden değil.
+
+**Sırada ne var.** Bütçe çıktı ama bir tasarım gerilimi ortaya çıkardı: sabit
+adım sayısı, K=5'in her demoyu 22 kez, K=40'ın 3 kez görmesi demek. Bunu
+konuşmadan koşuları başlatmıyorum.
