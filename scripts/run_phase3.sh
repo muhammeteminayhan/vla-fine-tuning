@@ -14,7 +14,7 @@ STAGE1_STEPS="${3:-8000}"
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
-STAGE1_CKPT="checkpoints/stage1/last/pretrained_model"
+STAGE1_CKPT="checkpoints/stage1/checkpoints/last/pretrained_model"
 PROGRESS="results/phase3_progress.log"
 
 say() { echo "[$(date -Is)] $*" | tee -a "$PROGRESS"; }
@@ -36,7 +36,7 @@ fi
 for SEED in 0 1 2; do
   for K in 5 10 20 40; do
     SPLIT="k${K}_seed${SEED}"
-    CKPT="checkpoints/stage2/${SPLIT}/last/pretrained_model"
+    CKPT="checkpoints/stage2/${SPLIT}/checkpoints/last/pretrained_model"
 
     if [ ! -d "$CKPT" ]; then
       say "train $SPLIT START steps=$STEPS"
