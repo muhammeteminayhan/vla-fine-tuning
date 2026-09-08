@@ -49,10 +49,17 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
-    splits = json.loads((REPO / "configs" / "kshot_splits.json").read_text())
-    if a.split not in splits["splits"]:
-        raise SystemExit(f"unknown split {a.split!r}; have {sorted(splits['splits'])}")
-    spec = splits["splits"][a.split]
+    if a.split == "stage1":
+        # The factory's existing line: libero_spatial + libero_goal + libero_10.
+        # Not a K-shot split, so it carries no K and uses the study's base seed.
+        eps = json.loads((REPO / "configs" / "stage1_split.json").read_text())["stage1_train_episodes"]
+        spec = {"K": None, "seed": 0, "n_episodes_total": len(eps), "episodes": eps}
+    else:
+        splits = json.loads((REPO / "configs" / "kshot_splits.json").read_text())
+        if a.split not in splits["splits"]:
+            raise SystemExit(
+                f"unknown split {a.split!r}; have 'stage1' plus {sorted(splits['splits'])}")
+        spec = splits["splits"][a.split]
     episodes = json.dumps(spec["episodes"])
 
     out_dir = REPO / a.out_root / a.split
