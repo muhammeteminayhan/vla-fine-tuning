@@ -13,6 +13,11 @@ data/
 assets/**/*.mp4
 assets/**/*.mkv
 
+# Eval rollout videos: kept on disk for Phase 4 error analysis, not in git.
+# results/**/results.json IS tracked - it is the reproducibility evidence.
+results/**/*.mp4
+results/**/failures/
+
 # Python
 __pycache__/
 *.py[cod]

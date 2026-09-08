@@ -175,19 +175,76 @@ lerobot-eval \
   --env.control_mode=relative \
   --env.init_states=true \
   --eval.n_episodes=10 --eval.batch_size=1 \
-  --env.max_parallel_tasks=1
+  --env.max_parallel_tasks=1 \
+  --seed=1000
+
+# K=0 referans cizgisi (fine-tune EDILMEMIS smolvla_base) icin EK olarak sart:
+  --rename_map='{"observation.images.image": "observation.images.camera1",
+                 "observation.images.image2": "observation.images.camera2"}'
 ```
+
+**`--rename_map` neden sadece K=0'da gerekiyor:** `smolvla_base` kamera
+adlarını `camera1/2/3` diye beyan ediyor, LIBERO ise `image`/`image2` veriyor.
+`validate_visual_features_consistency` (`policies/utils.py:234`) iki yönden
+birinin alt küme olmasını kabul ediyor, yani `{camera1,camera2} ⊆
+{camera1,camera2,camera3}` geçiyor. Kendi fine-tune ettiğimiz checkpoint'ler
+LIBERO adlarıyla kaydedileceği için onlarda bu flag gerekmeyecek. **Yani K=0
+ile K>0 koşuları aynı komutla koşulmuyor — harness bunu bilmek zorunda.**
 
 **Faz 0'da eklenen / değişen flag'ler ve neden önemli oldukları:**
 
 | Flag | Neden |
 |---|---|
-| `--policy.output_features=null`<br>`--policy.input_features=null` | PEFT dokümanının resmî SmolVLA+LIBERO örneğinde var. Feature'ları checkpoint'ten devral |
+| `--policy.output_features=null`<br>`--policy.input_features=null` | **Zorunlu, kozmetik değil.** `null` = "checkpoint'in feature tanımını at, dataset'ten türet" (`policies.py:58`, `factory.py:334`). `smolvla_base` state=[6], 3 kamera, action=[6] beyan ediyor; LIBERO ise state=8, 2 kamera, action=7 veriyor. Bu flag'ler olmadan uyuşmazlık |
 | `--policy.scheduler_decay_lr=1e-4` | LoRA'da scheduler hedefi de 10 kat ölçekleniyor, sadece `optimizer_lr` değil |
 | `--env.control_mode=relative\|absolute` | **Policy ile eşleşmek zorunda.** Farklı VLA checkpoint'leri farklı action parametrizasyonuyla eğitiliyor. Yanlış mod = sessizce düşük başarı. Tüm koşularda sabitle ve logla |
 | `--env.init_states=true` | Sabit başlangıç durumları. Faz 1 determinizm kapısı için şart |
 | `--dataset.revision=<sha>` | Hub dataset'leri yeniden yüklenebiliyor. Sonuç raporlarken pinle, yoksa sayılar karşılaştırılamaz |
 | `--policy.push_to_hub=false` | Yasak #8'in komut seviyesindeki karşılığı |
+
+### `lerobot/smolvla_base` checkpoint'inin ölçülen konfigürasyonu
+
+Snapshot `c83c3163b8ca9b7e67c509fffd9121e66cb96205`, `model.safetensors` **865 MB**.
+
+| Alan | Değer | Neden önemli |
+|---|---|---|
+| `chunk_size` / `n_action_steps` | **50 / 50** | Tek forward'da 50 aksiyon üretip 50'sini de uyguluyor. Eval'de policy forward sayısını 50 kat azaltıyor |
+| `n_obs_steps` | 1 | Tek kare gözlem, geçmiş yok |
+| `max_state_dim` / `max_action_dim` | 32 / 32 | Farklı robot boyutlarını içeride padding ile karşılıyor; 6 vs 8 uyuşmazlığı bu yüzden ölümcül değil |
+| `vlm_model_name` | `HuggingFaceTB/SmolVLM2-500M-Video-Instruct` | Taban VLM |
+| `freeze_vision_encoder` | True | Vision tower donuk |
+| `train_expert_only` | True | Sadece action expert eğitiliyor |
+| `resize_imgs_with_padding` | [512, 512] | 256×256 gözlemler 512'ye padlenerek büyütülüyor |
+| `normalization_mapping` | VISUAL=IDENTITY, STATE/ACTION=**MEAN_STD** | Normalization stats checkpoint'e gömülü; feature seti değişince yeniden hesaplanmak zorunda |
+
+### SABİT KARAR: `--policy.n_action_steps=10`
+
+Faz 1'de ölçülerek karara bağlandı. Kanıt:
+`results/n_action_steps_comparison/results.json`. **Bütün K değerlerinde,
+bütün koşularda bu değer kullanılacak.** Değiştirmek deney tasarımını değiştirmek
+demektir (Yasak #6).
+
+Ölçüm (`smolvla_base`, `libero_object` task 0-1, 10 episode, seed 1000):
+
+| | `n_action_steps=50` | `n_action_steps=10` |
+|---|---|---|
+| Episode başına | 7.76 s | **11.15 s** (1.44×) |
+| GPU peak | 1811 MiB | 1813 MiB |
+| Başarı | 0.0% | 0.0% |
+
+Gerekçe: (1) hız cezası beklenen 5× yerine 1.44× çıktı — bütün Faz 4 boyunca
+~1.5 saat, deney tasarımını bozmaya değmez; (2) Pi0.5 referans çizgisi
+(%97.5) bu değerle ölçülmüş, aynısını kullanmak eğrinin tavanını gerçekten
+karşılaştırılabilir yapıyor; (3) `chunk_size=50` ama `n_action_steps=10`
+demek modelin 10 adımda bir dünyaya yeniden bakması (receding horizon),
+manipülasyonda genelde daha iyi.
+
+**Dürüstlük notu:** Bu deney hız sorusunu cevapladı, **doğruluk sorusunu
+cevaplamadı** — `smolvla_base` LIBERO'da %0 aldığı için iki kol ayırt edilemedi.
+Faz 3'te K=5 checkpoint'i çıkınca 20 dakikalık bir kontrol koşusuyla teyit et.
+
+**Ölçülen yan bulgu:** eval'in peak VRAM'i 1811 MiB / 7527 MiB. Eval tarafında
+bellek kısıt değil; kısıt Faz 3'te eğitimde ortaya çıkacak.
 
 Not: LoRA'da learning rate full fine-tune'a göre 10 kat yükseltiliyor (1e-4 yerine 1e-3).
 Varsayılan LoRA hedef modülleri: LM expert'teki `q_proj`/`v_proj` + state/action projeksiyonları.

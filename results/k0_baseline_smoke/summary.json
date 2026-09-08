@@ -1,0 +1,53 @@
+{
+  "policy": {
+    "path": "lerobot/smolvla_base",
+    "n_action_steps": 10,
+    "is_base_model": true
+  },
+  "env": {
+    "type": "libero",
+    "suite": "libero_object",
+    "task_ids": [
+      0,
+      1
+    ],
+    "control_mode": "relative",
+    "init_states": true,
+    "hard_reset": true
+  },
+  "n_runs": 3,
+  "seeds": [
+    1000,
+    2000,
+    3000
+  ],
+  "n_episodes": 18,
+  "n_success": 0,
+  "success_rate": 0.0,
+  "wilson95": [
+    0.0,
+    0.1758845505823749
+  ],
+  "per_task": {
+    "libero_object/0": {
+      "n": 9,
+      "k": 0,
+      "rate": 0.0
+    },
+    "libero_object/1": {
+      "n": 9,
+      "k": 0,
+      "rate": 0.0
+    }
+  },
+  "per_seed_rate": {
+    "1000": 0.0,
+    "2000": 0.0,
+    "3000": 0.0
+  },
+  "source_runs": [
+    "determinism_A",
+    "k0_seed2000",
+    "k0_seed3000"
+  ]
+}
