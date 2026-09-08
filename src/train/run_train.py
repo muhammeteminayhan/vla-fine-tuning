@@ -32,6 +32,10 @@ MIXED_PRECISION = "bf16"
 STEP_RE = re.compile(r"step:(\d+).*?loss:([\d.]+).*?step_s:([\d.]+).*?mem_gb:([\d.]+)")
 
 
+def _rel(p: Path) -> str:
+    """Repo-relative when possible; absolute otherwise (scratch dirs live outside)."""
+    return str(p.relative_to(REPO)) if p.is_relative_to(REPO) else str(p)
+
 def sh(cmd: list[str]) -> str:
     return subprocess.run(cmd, capture_output=True, text=True).stdout.strip()
 
@@ -134,16 +138,16 @@ def main() -> int:
         "loss_first_logged": float(rows[0][1]) if rows else None,
         "median_step_s": None if not rows else
             sorted(float(r[2]) for r in rows[1:])[max(0, (len(rows) - 1) // 2)],
-        "checkpoints": [str(p.relative_to(REPO)) for p in ckpts],
+        "checkpoints": [_rel(p) for p in ckpts],
         "git_commit": sh(["git", "-C", str(REPO), "rev-parse", "HEAD"]) or None,
         "command": cmd,
     }
     if out_dir.exists():                 # move the log in beside the checkpoints
         log = log.rename(out_dir / "train.log")
-        record["log"] = str(log.relative_to(REPO))
+        record["log"] = _rel(log)
         (out_dir / "run_record.json").write_text(json.dumps(record, indent=2) + "\n")
     else:
-        record["log"] = str(log.relative_to(REPO))
+        record["log"] = _rel(log)
         log.with_suffix(".run_record.json").write_text(json.dumps(record, indent=2) + "\n")
     print(json.dumps({k: v for k, v in record.items() if k != "command"}, indent=2))
     return 0 if record["ok"] else 1
