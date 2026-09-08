@@ -1,0 +1,25 @@
+# Checkpoints and model weights - too large for git
+checkpoints/
+outputs/
+*.safetensors
+*.ckpt
+*.pt
+
+# Dataset cache
+data/
+.cache/
+
+# Large videos. Small Phase 0 / Phase 5 demo clips are force-added.
+assets/**/*.mp4
+assets/**/*.mkv
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Tooling
+.ipynb_checkpoints/
+wandb/
+.DS_Store
