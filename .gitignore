@@ -5,9 +5,9 @@ outputs/
 *.ckpt
 *.pt
 
-# Dataset cache
-data/
-.cache/
+# Dataset cache. Anchored to the repo root so it does not swallow src/data/.
+/data/
+/.cache/
 
 # Large videos. Small Phase 0 / Phase 5 demo clips are force-added.
 assets/**/*.mp4
