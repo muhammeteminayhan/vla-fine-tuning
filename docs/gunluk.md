@@ -380,3 +380,46 @@ kendisinden değil.
 **Sırada ne var.** Bütçe çıktı ama bir tasarım gerilimi ortaya çıkardı: sabit
 adım sayısı, K=5'in her demoyu 22 kez, K=40'ın 3 kez görmesi demek. Bunu
 konuşmadan koşuları başlatmıyorum.
+
+---
+
+### Blok 10 — Pilot koşusu: boru hattı çalışıyor
+
+**Ne yaptım.** K=40 seed0'ı 2000 adım eğittim (24 dk), ara checkpoint'ler
+kaydettim, hepsini aynı eval protokolüyle değerlendirdim.
+
+**Sonuç.** Base model %0 → 2000 adım sonra %48. Güven aralıkları çakışmıyor,
+yani gerçek bir kazanç. Boru hattı uçtan uca çalışıyor.
+
+| adım | başarı | Wilson %95 |
+|---|---|---|
+| 0 | %0 (0/18) | [%0, %17.6] |
+| 500 | %14 (7/50) | [%7.0, %26.2] |
+| 1000 | %22 (11/50) | [%12.8, %35.2] |
+| 1500 | %70 (35/50) | [%56.2, %80.9] |
+| 2000 | %48 (24/50) | [%34.8, %61.5] |
+
+**Neden pilot yaptım.** 27 saatlik bir bütçeyi bağlamadan önce boru hattının
+öğrendiğini görmek istedim. İyi ki yaptım — çünkü monoton olmayan bir eğri
+çıktı ve bunu tam koşulardan sonra keşfetseydik yorumlamak çok daha zor olurdu.
+
+**Yeni kavram — LR scheduler'ın adım bütçesine göre otomatik ölçeklenmesi.**
+Log şunu bastı: `Auto-scaling LR scheduler: num_training_steps (2000) <
+num_decay_steps (30000). Scaling warmup: 1000 → 66, decay: 30000 → 2000`.
+Yani LeRobot, warmup ve decay'i verdiğin adım bütçesine sıkıştırıyor. LR
+4.0e-04'ten başlayıp ~250. adımda 9.7e-04 tepeye çıkıyor, sonra sona doğru
+sıfıra iniyor.
+
+Bunun iki pratik sonucu var. Birincisi, ara checkpoint'ler evrensel bir "eğitim
+eğrisi" değil — 2000 adımlık bir schedule üzerindeki noktalar; 6000 adımlık bir
+koşuda 1500. adım bambaşka bir LR'de olur. İkincisi, **farklı toplam adım sayılı
+koşular karşılaştırılamaz**, çünkü LR trajektorileri farklı. Adım sayısını bütün
+K'larda sabitlemek bu yüzden sadece adalet meselesi değil, teknik zorunluluk.
+
+**Aşırı öğrenme değil.** İlk refleksim 1500→2000 düşüşünü overfitting sanmaktı.
+Ama hesapladım: 2000 adım × 16 = 32.000 sample, K=40'ın verisi 59.017 frame.
+Model veriyi **bir kez bile görmemiş** (0.54 epoch). Sayıyı kontrol etmeseydim
+rapora yanlış bir açıklama yazacaktım.
+
+**Sırada ne var.** Adım sayısı kararı — 2000 yetmiyor olabilir, çünkü K=40 için
+daha yarım epoch bile değil.
