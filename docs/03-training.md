@@ -171,15 +171,14 @@ Only K and the seed change.
 
 ## 6. Run results
 
-Every run below used the configuration in §5; `src/train/verify_runs.py` checks
-that mechanically rather than by eye and currently reports **CONFIG CONSISTENCY:
-PASS** — identical steps, batch size, LoRA config, optimizer, precision,
-`n_action_steps` and dataset revision across all of them, all initialised from
-the same stage-1 checkpoint.
+13 runs: stage 1 plus 4 K values x 3 seeds. `src/train/verify_runs.py` reports
+**CONFIG CONSISTENCY: PASS** — identical steps, batch size, LoRA config,
+optimizer, precision, `n_action_steps` and dataset revision across all of them,
+all initialised from the same stage-1 checkpoint.
 
 | run | K | seed | episodes | wall | peak VRAM | loss | success |
 |---|---|---|---|---|---|---|---|
-| `stage1` | — | 0 | 1239 | 1.20 h | 4075 MiB | 2.435 → 0.495 | 0/50 = 0% (held-out) |
+| `stage1` | — | 0 | 1239 | 1.20 h | 4075 MiB | 2.435 → 0.495 | 0/50 = 0% |
 | `k5_seed0` | 5 | 0 | 50 | 1.18 h | 4149 MiB | 0.559 → 0.094 | 29/50 = 58% |
 | `k10_seed0` | 10 | 0 | 100 | 1.18 h | 4127 MiB | 0.564 → 0.169 | 36/50 = 72% |
 | `k20_seed0` | 20 | 0 | 200 | 1.18 h | 4145 MiB | 0.559 → 0.254 | 32/50 = 64% |
@@ -188,11 +187,35 @@ the same stage-1 checkpoint.
 | `k10_seed1` | 10 | 1 | 100 | 1.18 h | 4153 MiB | 0.573 → 0.173 | 34/50 = 68% |
 | `k20_seed1` | 20 | 1 | 200 | 1.18 h | 4123 MiB | 0.574 → 0.272 | 43/50 = 86% |
 | `k40_seed1` | 40 | 1 | 400 | 1.18 h | 4123 MiB | 0.588 → 0.298 | 41/50 = 82% |
-| `k5_seed2` | 5 | 2 | 50 | 1.18 h | 4127 MiB | 0.556 → 0.098 | (pending) |
+| `k5_seed2` | 5 | 2 | 50 | 1.18 h | 4127 MiB | 0.556 → 0.098 | 35/50 = 70% |
+| `k10_seed2` | 10 | 2 | 100 | 1.18 h | 4175 MiB | 0.57 → 0.175 | 36/50 = 72% |
+| `k20_seed2` | 20 | 2 | 200 | 1.18 h | 4153 MiB | 0.57 → 0.263 | 38/50 = 76% |
+| `k40_seed2` | 40 | 2 | 400 | 1.18 h | 4189 MiB | 0.56 → 0.324 | 36/50 = 72% |
 
-Total training so far: **11.8 h** on one RTX 5060 Laptop. Peak VRAM never
-exceeded 4153 MiB
-of 7527, so batch_size 16 left the headroom it was chosen for.
+Total training: **15.3 h** on one RTX 5060 Laptop. Peak VRAM never exceeded
+4189 MiB of 7527, so batch_size 16 kept the headroom it was chosen for.
+
+### The curve
+
+| K | operator min | success (150 ep) | Wilson 95% | per-seed |
+|---|---|---|---|---|
+| 0 | 0.0 | 0/50 = 0% | [0.0%, 7.1%] | — |
+| 5 | 2.28 | 98/150 = 65.3% | [57.4%, 72.5%] | 58%, 68%, 70% |
+| 10 | 4.56 | 106/150 = 70.7% | [62.9%, 77.4%] | 68%, 72%, 72% |
+| 20 | 9.12 | 113/150 = 75.3% | [67.9%, 81.5%] | 64%, 76%, 86% |
+| 40 | 18.25 | 118/150 = 78.7% | [71.4%, 84.5%] | 72%, 82%, 82% |
+
+Increments shrink fast: +65 points from 0 to 5 demonstrations, then +5.4, +4.6
+and +3.4. Going from 20 to 40 demonstrations — doubling the operator's time from
+9 to 18 minutes per part — buys 3.4 points, and the K=5 and K=40 intervals
+almost touch. **The curve saturates early**, which is the finding that matters
+for the business case: most of the value arrives in the first handful of
+demonstrations.
+
+Per-seed spread is 12, 4, 22 and 10 points at K = 5, 10, 20, 40 — no monotone
+relationship with K. An earlier reading of the first two values as "variance
+shrinks as K grows" was retracted when K=20 came in at 22 points, and the full
+three-seed picture confirms there is no such trend to report.
 
 ### Training loss runs the wrong way
 
@@ -205,8 +228,8 @@ Loss is therefore not a usable model-selection signal in this study, and a run
 that "converged better" is not a better policy. Everything reported here is
 measured by rollout success in the environment.
 
-Success rates above are per run at 5 episodes per task; the pooled per-K figures
-and their intervals live in `results/teaching_cost_curve.json`.
+Per-run success above is at 5 episodes per task; pooled per-K figures live in
+`results/teaching_cost_curve.json`.
 
 ---
 

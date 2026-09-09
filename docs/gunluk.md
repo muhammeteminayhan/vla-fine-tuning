@@ -458,3 +458,46 @@ tek tek kapatmak, bu projede en çok zaman kazandıran alışkanlık oldu.
 
 **Sırada ne var.** Driver koşuyor: 1. aşama (6000 adım) → seed 0'ın K=5/10/20/40
 koşuları, her birinin ardından eval.
+
+---
+
+### Blok 12 — Faz 3 tamamlandı: üç seed, tam eğri
+
+**Ne yaptım.** Driver gece 01:50'de başladı, 18:46'da bitti. 1. aşama + 4 K × 3
+seed = 13 eğitim koşusu, toplam **15.3 saat**, her birinin ardından eval.
+Konfigürasyon tutarlılığını göz kararı değil script'le doğruladım.
+
+**Sonuç.**
+
+| K | operatör dk | başarı (150 ep) | Wilson %95 |
+|---|---|---|---|
+| 0 | 0 | %0 | [%0, %7.1] |
+| 5 | 2.3 | %65.3 | [%57.4, %72.5] |
+| 10 | 4.6 | %70.7 | [%62.9, %77.4] |
+| 20 | 9.1 | %75.3 | [%67.9, %81.5] |
+| 40 | 18.2 | %78.7 | [%71.4, %84.5] |
+
+**Asıl bulgu doyum.** Artışlar: +65 puan (0→5), sonra +5.4, +4.6, +3.4. K'yı
+20'den 40'a çıkarmak, yani operatörün süresini 9 dakikadan 18'e katlamak, 3.4
+puan getiriyor. Değer ilk birkaç demonstrasyonda geliyor.
+
+**Neden böyle kurguladım.** Seed-major sıra (önce seed 0'ın bütün K'ları) kritikti:
+driver yarıda kesilseydi elimizde tek seed'lik tam bir eğri olurdu, dört yarım
+seed değil. Nitekim sabah baseline ölçümü için driver'ı bir kez durdurdum ve
+idempotent olduğu için biteni atlayıp devam etti.
+
+**Yeni kavram — iki farklı belirsizliğin farklı şeyler söylemesi.** Grafikte iki
+gösterim var: gölgeli bant (episode gürültüsü, Wilson) ve hata çubukları
+(eğitim koşuları arası yayılma). K=10'da bant geniş ama çubuklar çok dar
+(sd 2.3 puan) — yani "hangi demoları seçtiğin" fark etmiyor, belirsizlik
+sadece kaç episode koştuğumuzdan geliyor. K=20'de tam tersi: çubuklar bandı
+aşıyor (sd 11 puan), yani asıl belirsizlik hangi 20 demoyu seçtiğinde.
+Tek bir hata çubuğu çizseydik bu ayrım kaybolurdu.
+
+**Kendi hatam ve düzeltmesi.** İki seed varken "varyans K büyüdükçe azalıyor"
+dedim, K=20'nin üçüncü seed'i gelince örüntü çöktü (12, 4, 22, 10 — trend yok).
+İki noktadan trend okumaya çalışmak; tam da bu projede kaçınmaya çalıştığımız
+şey. Geri aldım ve rapora "böyle bir trend yok" diye yazdım.
+
+**Sırada ne var.** Faz 3 kapısı geçti. Faz 4 (hata analizi + nihai rapor) için
+onay bekliyorum.
