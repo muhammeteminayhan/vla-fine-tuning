@@ -2,58 +2,62 @@
   "points": [
     {
       "K": 5,
-      "n_seeds": 1,
-      "n_episodes": 50,
-      "n_success": 29,
-      "success_rate": 0.58,
-      "wilson_lo": 0.4423319668777783,
-      "wilson_hi": 0.7062520276543307,
+      "n_seeds": 2,
+      "n_episodes": 100,
+      "n_success": 63,
+      "success_rate": 0.63,
+      "wilson_lo": 0.5322034757513312,
+      "wilson_hi": 0.7181778743049083,
       "seed_rates": [
-        0.58
+        0.58,
+        0.68
       ],
       "seed_min": 0.58,
-      "seed_max": 0.58,
+      "seed_max": 0.68,
       "operator_minutes_per_task": 2.28
     },
     {
       "K": 10,
-      "n_seeds": 1,
-      "n_episodes": 50,
-      "n_success": 36,
-      "success_rate": 0.72,
-      "wilson_lo": 0.5833461285401034,
-      "wilson_hi": 0.8252598564231963,
+      "n_seeds": 2,
+      "n_episodes": 100,
+      "n_success": 70,
+      "success_rate": 0.7,
+      "wilson_lo": 0.6041496156718804,
+      "wilson_hi": 0.7810524613377188,
       "seed_rates": [
-        0.72
+        0.72,
+        0.68
       ],
-      "seed_min": 0.72,
+      "seed_min": 0.68,
       "seed_max": 0.72,
       "operator_minutes_per_task": 4.56
     },
     {
       "K": 20,
-      "n_seeds": 1,
-      "n_episodes": 50,
-      "n_success": 32,
-      "success_rate": 0.64,
-      "wilson_lo": 0.5014076201030195,
-      "wilson_hi": 0.7586143703281711,
+      "n_seeds": 2,
+      "n_episodes": 100,
+      "n_success": 75,
+      "success_rate": 0.75,
+      "wilson_lo": 0.6569535362992417,
+      "wilson_hi": 0.8245490599627573,
       "seed_rates": [
-        0.64
+        0.64,
+        0.86
       ],
       "seed_min": 0.64,
-      "seed_max": 0.64,
+      "seed_max": 0.86,
       "operator_minutes_per_task": 9.12
     },
     {
       "K": 40,
-      "n_seeds": 1,
-      "n_episodes": 50,
-      "n_success": 41,
+      "n_seeds": 2,
+      "n_episodes": 100,
+      "n_success": 82,
       "success_rate": 0.82,
-      "wilson_lo": 0.6920368054529739,
-      "wilson_hi": 0.902299172675462,
+      "wilson_lo": 0.7333246397578691,
+      "wilson_hi": 0.8829986834574896,
       "seed_rates": [
+        0.82,
         0.82
       ],
       "seed_min": 0.82,
