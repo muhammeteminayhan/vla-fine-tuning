@@ -171,7 +171,42 @@ Only K and the seed change.
 
 ## 6. Run results
 
-Filled in from `checkpoints/**/run_record.json` as the driver completes.
+Every run below used the configuration in §5; `src/train/verify_runs.py` checks
+that mechanically rather than by eye and currently reports **CONFIG CONSISTENCY:
+PASS** — identical steps, batch size, LoRA config, optimizer, precision,
+`n_action_steps` and dataset revision across all of them, all initialised from
+the same stage-1 checkpoint.
+
+| run | K | seed | episodes | wall | peak VRAM | loss | success |
+|---|---|---|---|---|---|---|---|
+| `stage1` | — | 0 | 1239 | 1.20 h | 4075 MiB | 2.435 → 0.495 | 0/50 = 0% (held-out) |
+| `k5_seed0` | 5 | 0 | 50 | 1.18 h | 4149 MiB | 0.559 → 0.094 | 29/50 = 58% |
+| `k10_seed0` | 10 | 0 | 100 | 1.18 h | 4127 MiB | 0.564 → 0.169 | 36/50 = 72% |
+| `k20_seed0` | 20 | 0 | 200 | 1.18 h | 4145 MiB | 0.559 → 0.254 | 32/50 = 64% |
+| `k40_seed0` | 40 | 0 | 400 | 1.18 h | 4149 MiB | 0.558 → 0.305 | 41/50 = 82% |
+| `k5_seed1` | 5 | 1 | 50 | 1.18 h | 4127 MiB | 0.568 → 0.102 | 34/50 = 68% |
+| `k10_seed1` | 10 | 1 | 100 | 1.18 h | 4153 MiB | 0.573 → 0.173 | 34/50 = 68% |
+| `k20_seed1` | 20 | 1 | 200 | 1.18 h | 4123 MiB | 0.574 → 0.272 | 43/50 = 86% |
+| `k40_seed1` | 40 | 1 | 400 | 1.18 h | 4123 MiB | 0.588 → 0.298 | 41/50 = 82% |
+| `k5_seed2` | 5 | 2 | 50 | 1.18 h | 4127 MiB | 0.556 → 0.098 | (pending) |
+
+Total training so far: **11.8 h** on one RTX 5060 Laptop. Peak VRAM never
+exceeded 4153 MiB
+of 7527, so batch_size 16 left the headroom it was chosen for.
+
+### Training loss runs the wrong way
+
+Final loss falls as K falls — 0.094 at K=5 against 0.305 at K=40 — while success
+rate moves the other way. With the step count fixed, a smaller K means more
+epochs over less data, so the model fits its handful of demonstrations more and
+more tightly. It gets very good at reproducing them and less good at the task.
+
+Loss is therefore not a usable model-selection signal in this study, and a run
+that "converged better" is not a better policy. Everything reported here is
+measured by rollout success in the environment.
+
+Success rates above are per run at 5 episodes per task; the pooled per-K figures
+and their intervals live in `results/teaching_cost_curve.json`.
 
 ---
 
