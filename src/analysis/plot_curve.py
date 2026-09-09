@@ -22,6 +22,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.ticker import NullFormatter, NullLocator  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -121,6 +122,10 @@ def main() -> int:
     ax.set_xscale("log")
     ax.set_xticks(ks)
     ax.set_xticklabels([str(k) for k in ks])
+    # A log axis decorates itself with minor ticks like "6 x 10^0"; the only
+    # meaningful x values here are the K we actually ran.
+    ax.xaxis.set_minor_locator(NullLocator())
+    ax.xaxis.set_minor_formatter(NullFormatter())
     ax.set_xlabel("demonstrations per new task  (K)")
     ax.set_ylabel("task success rate  (%)")
     ax.set_ylim(0, 100)
@@ -130,6 +135,8 @@ def main() -> int:
     top = ax.secondary_xaxis("top")
     top.set_xticks(ks)
     top.set_xticklabels([f"{k * per_demo_s / 60:.1f}" for k in ks])
+    top.xaxis.set_minor_locator(NullLocator())
+    top.xaxis.set_minor_formatter(NullFormatter())
     top.set_xlabel(f"operator minutes per new task  "
                    f"(demo {demo_s:.1f}s measured + reset {reset_s:.0f}s ASSUMED)",
                    fontsize=9)
