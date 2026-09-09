@@ -50,8 +50,11 @@ def main() -> int:
 
     runs = load_runs(a.runs)
 
-    # Guard against silently averaging incomparable runs.
-    configs = {(r["policy"]["path"], r["policy"]["n_action_steps"], r["env"]["suite"],
+    # Guard against silently averaging incomparable runs. The policy path is
+    # deliberately excluded: aggregating across seeds means aggregating across
+    # different checkpoints, which is the whole point. What must match is the
+    # evaluation protocol.
+    configs = {(r["policy"]["n_action_steps"], r["env"]["suite"],
                 r["env"]["control_mode"], r["eval"]["n_episodes"]) for r in runs}
     if len(configs) > 1:
         print("REFUSING TO AGGREGATE: runs differ in configuration, so an average "
@@ -61,23 +64,29 @@ def main() -> int:
         return 1
 
     per_task = defaultdict(list)          # task key -> successes across all runs
-    per_seed_rate: dict[int, list] = defaultdict(list)
+    # Spread is measured across *training* runs, not eval seeds. This study holds
+    # the eval seed fixed at 1000 and varies the seed used to draw the K-shot
+    # subset and train, so grouping by eval seed would put every run in one
+    # bucket and report no spread at all.
+    per_run_rate: dict[str, list] = defaultdict(list)
     for r in runs:
-        start_seed = r["eval"]["start_seed"]
+        run_key = r["policy"]["path"]
         for e in r["episodes"]:
             per_task[f"{e['suite']}/{e['task_id']}"].append(e["success"])
-            per_seed_rate[start_seed].append(e["success"])
+            per_run_rate[run_key].append(e["success"])
 
     all_success = [s for v in per_task.values() for s in v]
     n, k = len(all_success), sum(all_success)
     lo, hi = wilson(k, n)
 
-    seeds = sorted(per_seed_rate)
-    seed_rates = [sum(v) / len(v) for _, v in sorted(per_seed_rate.items())]
+    run_keys = sorted(per_run_rate)
+    seed_rates = [sum(per_run_rate[k]) / len(per_run_rate[k]) for k in run_keys]
 
-    print(f"policy      : {runs[0]['policy']['path']}  (n_action_steps={runs[0]['policy']['n_action_steps']})")
+    print(f"n_action_steps: {runs[0]['policy']['n_action_steps']}")
+    for r in runs:
+        print(f"  policy    : {r['policy']['path']}")
     print(f"suite       : {runs[0]['env']['suite']}   control_mode={runs[0]['env']['control_mode']}")
-    print(f"runs        : {len(runs)}   seeds={seeds}   episodes={n}\n")
+    print(f"runs        : {len(runs)}   training runs={len(run_keys)}   episodes={n}\n")
 
     print(f"| {'task':<22} | {'n':>4} | {'success':>7} | {'rate':>7} |")
     print(f"|{'-'*24}|{'-'*6}|{'-'*9}|{'-'*9}|")
@@ -89,28 +98,28 @@ def main() -> int:
 
     print(f"\nWilson 95% CI over {n} pooled episodes : [{lo*100:.1f}%, {hi*100:.1f}%]")
 
-    if len(seeds) >= 2:
+    if len(run_keys) >= 2:
         mean = sum(seed_rates) / len(seed_rates)
         var = sum((x - mean) ** 2 for x in seed_rates) / (len(seed_rates) - 1)
         sd = math.sqrt(var)
-        label = "95% CI" if len(seeds) >= 3 else "descriptive only (n=2)"
-        half = 1.96 * sd / math.sqrt(len(seed_rates)) if len(seeds) >= 3 else sd
-        print(f"across {len(seeds)} seeds: mean={mean*100:.1f}%  sd={sd*100:.1f}pp  "
+        label = "95% CI" if len(run_keys) >= 3 else "descriptive only (n=2)"
+        half = 1.96 * sd / math.sqrt(len(seed_rates)) if len(run_keys) >= 3 else sd
+        print(f"across {len(run_keys)} training runs: mean={mean*100:.1f}%  sd={sd*100:.1f}pp  "
               f"min={min(seed_rates)*100:.1f}%  max={max(seed_rates)*100:.1f}%")
-        print(f"  seed-level {label}: {(mean-half)*100:.1f}% .. {(mean+half)*100:.1f}%")
+        print(f"  run-level {label}: {(mean-half)*100:.1f}% .. {(mean+half)*100:.1f}%")
     else:
-        print(f"across seeds: only {len(seeds)} seed present - no across-seed interval. "
-              "Phase 4 needs at least 3.")
+        print(f"across runs: only {len(run_keys)} training run present - no across-run "
+              "interval. Phase 4 needs at least 3.")
 
     if a.json_out:
         payload = {
             "policy": runs[0]["policy"], "env": runs[0]["env"],
-            "n_runs": len(runs), "seeds": seeds, "n_episodes": n, "n_success": k,
+            "n_runs": len(runs), "training_runs": run_keys, "n_episodes": n, "n_success": k,
             "success_rate": k / n,
             "wilson95": [lo, hi],
             "per_task": {t: {"n": len(v), "k": sum(v), "rate": sum(v) / len(v)}
                          for t, v in sorted(per_task.items())},
-            "per_seed_rate": dict(zip(seeds, seed_rates)),
+            "per_run_rate": dict(zip(run_keys, seed_rates)),
             "source_runs": [r["run_id"] for r in runs],
         }
         a.json_out.parent.mkdir(parents=True, exist_ok=True)
