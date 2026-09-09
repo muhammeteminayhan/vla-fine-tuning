@@ -16,7 +16,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 
-def strip(video: Path, out: Path, n: int, height: int) -> bool:
+def strip(video: Path, out: Path, n: int, height: int, crop: str | None) -> bool:
     """Tile n evenly spaced frames of `video` into one horizontal image."""
     probe = subprocess.run(
         ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames",
@@ -27,7 +27,12 @@ def strip(video: Path, out: Path, n: int, height: int) -> bool:
     total = int(probe)
     step = max(1, total // n)
     # select every `step`-th frame, cap at n, scale, then tile in one row
-    vf = (f"select='not(mod(n\\,{step}))',scale=-1:{height},tile={n}x1")
+    chain = [f"select='not(mod(n\\,{step}))'"]
+    if crop:
+        x, y, w, h = (float(v) for v in crop.split(","))
+        chain.append(f"crop=iw*{w}:ih*{h}:iw*{x}:ih*{y}")
+    chain += [f"scale=-1:{height}", f"tile={n}x1"]
+    vf = ",".join(chain)
     r = subprocess.run(
         ["ffmpeg", "-y", "-v", "error", "-i", str(video), "-vf", vf,
          "-frames:v", "1", str(out)],
@@ -40,6 +45,10 @@ def main() -> int:
     ap.add_argument("--run", required=True, help="results/<run_id> directory")
     ap.add_argument("--frames", type=int, default=8)
     ap.add_argument("--height", type=int, default=128)
+    ap.add_argument("--crop", default="0.03,0.20,0.82,0.55",
+                    help="x,y,w,h as fractions of the frame. The default drops the empty\n"
+                         "floor below the table and the wall above it, so the gripper and\n"
+                         "objects are large enough to judge. Pass '' to disable.")
     ap.add_argument("--max-per-task", type=int, default=2,
                     help="strips per task, to keep the review set small")
     ap.add_argument("--out-dir", default=None)
@@ -62,7 +71,7 @@ def main() -> int:
         if not video.exists():
             continue
         out = out_dir / f"task{t:02d}_ep{ep['episode_ix']}_seed{ep['seed']}.jpg"
-        if strip(video, out, a.frames, a.height):
+        if strip(video, out, a.frames, a.height, a.crop or None):
             per_task[t] = per_task.get(t, 0) + 1
             made.append({"task_id": t, "episode_ix": ep["episode_ix"],
                          "seed": ep["seed"], "strip": str(out)})
