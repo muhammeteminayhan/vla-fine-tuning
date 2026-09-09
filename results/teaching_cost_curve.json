@@ -1,0 +1,76 @@
+{
+  "points": [
+    {
+      "K": 5,
+      "n_seeds": 1,
+      "n_episodes": 50,
+      "n_success": 29,
+      "success_rate": 0.58,
+      "wilson_lo": 0.4423319668777783,
+      "wilson_hi": 0.7062520276543307,
+      "seed_rates": [
+        0.58
+      ],
+      "seed_min": 0.58,
+      "seed_max": 0.58,
+      "operator_minutes_per_task": 2.28
+    },
+    {
+      "K": 10,
+      "n_seeds": 1,
+      "n_episodes": 50,
+      "n_success": 36,
+      "success_rate": 0.72,
+      "wilson_lo": 0.5833461285401034,
+      "wilson_hi": 0.8252598564231963,
+      "seed_rates": [
+        0.72
+      ],
+      "seed_min": 0.72,
+      "seed_max": 0.72,
+      "operator_minutes_per_task": 4.56
+    },
+    {
+      "K": 20,
+      "n_seeds": 1,
+      "n_episodes": 50,
+      "n_success": 32,
+      "success_rate": 0.64,
+      "wilson_lo": 0.5014076201030195,
+      "wilson_hi": 0.7586143703281711,
+      "seed_rates": [
+        0.64
+      ],
+      "seed_min": 0.64,
+      "seed_max": 0.64,
+      "operator_minutes_per_task": 9.12
+    },
+    {
+      "K": 40,
+      "n_seeds": 1,
+      "n_episodes": 50,
+      "n_success": 41,
+      "success_rate": 0.82,
+      "wilson_lo": 0.6920368054529739,
+      "wilson_hi": 0.902299172675462,
+      "seed_rates": [
+        0.82
+      ],
+      "seed_min": 0.82,
+      "seed_max": 0.82,
+      "operator_minutes_per_task": 18.25
+    }
+  ],
+  "baseline": {
+    "success_rate": 0.0,
+    "n_episodes": 50,
+    "wilson_lo": 0.0,
+    "wilson_hi": 0.07135003417431873
+  },
+  "operator_time_model": {
+    "demo_seconds_measured": 7.37,
+    "reset_seconds_assumed": 20.0,
+    "seconds_per_demo": 27.37
+  },
+  "figure": "assets/teaching_cost_curve.png"
+}
