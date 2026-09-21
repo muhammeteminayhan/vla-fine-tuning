@@ -20,10 +20,12 @@ jobs:
           python-version: "3.12"
 
       - name: Install check-only dependencies
-        # Deliberately not the project environment: torch, LeRobot and MuJoCo are
-        # not needed to verify the invariants, and pinning them here would
-        # duplicate the sm_120-specific install documented in docs/00-environment.md.
-        run: pip install --quiet pytest numpy ruff
+        # Not the project environment: torch, LeRobot and MuJoCo are not needed
+        # to verify the invariants, and pinning them here would duplicate the
+        # sm_120-specific install that docs/00-environment.md owns. matplotlib is
+        # included because two tests invoke plot_curve.py as a subprocess,
+        # exercising the real script rather than a copy of its logic.
+        run: pip install --quiet pytest numpy ruff matplotlib
 
       - name: Lint
         run: ruff check src scripts tests
