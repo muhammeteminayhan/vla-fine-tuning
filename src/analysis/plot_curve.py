@@ -31,10 +31,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from common.stats import wilson  # noqa: E402
 
 
-def collect(pattern: str) -> dict[int, list[dict]]:
+def collect(pattern: str, root: Path) -> dict[int, list[dict]]:
     """K -> list of per-seed run records."""
     out = defaultdict(list)
-    for p in sorted(REPO.glob(pattern)):
+    for p in sorted(root.glob(pattern)):
         f = p / "results.json"
         if not f.exists():
             continue
@@ -53,6 +53,8 @@ def collect(pattern: str) -> dict[int, list[dict]]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--pattern", default="results/stage2_k*_seed*")
+    ap.add_argument("--root", type=Path, default=REPO,
+                    help="directory the pattern is resolved against")
     ap.add_argument("--baseline", default=None,
                     help="run dir for the K=0 reference line")
     ap.add_argument("--out", default="assets/teaching_cost_curve.png")
@@ -64,7 +66,7 @@ def main() -> int:
     reset_s = splits["reset_seconds_assumed"]
     per_demo_s = demo_s + reset_s
 
-    runs = collect(a.pattern)
+    runs = collect(a.pattern, a.root)
     if not runs:
         raise SystemExit(f"no runs matched {a.pattern!r}")
 
@@ -96,8 +98,8 @@ def main() -> int:
         })
 
     base = None
-    if a.baseline and (REPO / a.baseline / "results.json").exists():
-        d = json.loads((REPO / a.baseline / "results.json").read_text())["summary"]
+    if a.baseline and (a.root / a.baseline / "results.json").exists():
+        d = json.loads((a.root / a.baseline / "results.json").read_text())["summary"]
         blo, bhi = wilson(d["n_success"], d["n_episodes"])
         base = {"success_rate": d["success_rate"], "n_episodes": d["n_episodes"],
                 "wilson_lo": blo, "wilson_hi": bhi}
@@ -149,7 +151,7 @@ def main() -> int:
 
     ax.set_title("Teaching cost curve: SmolVLA on unseen LIBERO-Object tasks", pad=28)
     fig.tight_layout()
-    out = REPO / a.out
+    out = a.root / a.out
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=160)
 
@@ -157,8 +159,8 @@ def main() -> int:
                "operator_time_model": {"demo_seconds_measured": demo_s,
                                        "reset_seconds_assumed": reset_s,
                                        "seconds_per_demo": per_demo_s},
-               "figure": str(out.relative_to(REPO)) if out.is_relative_to(REPO) else str(out)}
-    (REPO / a.json_out).write_text(json.dumps(payload, indent=2) + "\n")
+               "figure": str(out.relative_to(a.root)) if out.is_relative_to(a.root) else str(out)}
+    (a.root / a.json_out).write_text(json.dumps(payload, indent=2) + "\n")
 
     print(f"{'K':>4} {'seeds':>6} {'episodes':>9} {'success':>8} {'Wilson 95%':>20} {'op.min':>8}")
     for p in points:
@@ -168,7 +170,7 @@ def main() -> int:
               f"{p['operator_minutes_per_task']:>8.1f}")
     if base:
         print(f"baseline K=0: {base['success_rate']*100:.1f}% over {base['n_episodes']} episodes")
-    print(f"\nwrote {out}\nwrote {REPO / a.json_out}")
+    print(f"\nwrote {out}\nwrote {a.root / a.json_out}")
     return 0
 
 

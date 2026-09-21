@@ -148,12 +148,57 @@ def test_every_run_used_the_frozen_configuration():
 
 # --- analysis guards ------------------------------------------------------
 
-def test_analysis_refuses_to_pool_mixed_resolutions():
-    """results/ holds both the 5- and 10-episode sweeps; the default glob matches
-    both, and averaging them would produce a plausible curve of nothing."""
+def _fake_run(dirpath: Path, k: int, n_episodes: int, n_success: int) -> None:
+    """A minimal results.json with the fields the analysis scripts read."""
+    dirpath.mkdir(parents=True, exist_ok=True)
+    episodes = [
+        {"suite": "libero_object", "task_id": i % 2, "episode_ix": i,
+         "seed": 1000 + i, "success": i < n_success, "sum_reward": 0.0,
+         "max_reward": 0.0, "episode_length": 280, "video": None}
+        for i in range(n_episodes)
+    ]
+    (dirpath / "results.json").write_text(json.dumps({
+        "run_id": dirpath.name,
+        "policy": {"path": f"fake/{dirpath.name}", "n_action_steps": 10,
+                   "is_base_model": False},
+        "env": {"type": "libero", "suite": "libero_object", "task_ids": None,
+                "control_mode": "relative", "init_states": True, "hard_reset": True},
+        "eval": {"n_episodes": n_episodes, "batch_size": 1, "start_seed": 1000},
+        "episodes": episodes,
+        "summary": {"n_episodes": n_episodes, "n_success": n_success,
+                    "success_rate": n_success / n_episodes,
+                    "per_task_success_rate": {}},
+    }))
+
+
+def test_analysis_refuses_to_pool_mixed_resolutions(tmp_path):
+    """Runs evaluated at different episodes-per-task are different experiments.
+
+    Builds its own fixture rather than relying on what happens to be in
+    results/, so the guard is tested even in a fresh clone.
+    """
+    root = tmp_path / "results"
+    _fake_run(root / "stage2_k5_seedA", 5, 5, 3)
+    _fake_run(root / "stage2_k5_seedB", 5, 10, 7)
+
     r = subprocess.run(
-        [sys.executable, "src/analysis/plot_curve.py",
-         "--pattern", "results/stage2_k*_seed*"],
-        cwd=REPO, capture_output=True, text=True)
+        [sys.executable, str(REPO / "src/analysis/plot_curve.py"),
+         "--pattern", "results/stage2_k*_seed*", "--root", str(tmp_path),
+         "--out", "c.png", "--json-out", "c.json"],
+        capture_output=True, text=True)
     assert r.returncode != 0, "mixed-resolution pooling was not refused"
     assert "different resolutions" in (r.stdout + r.stderr)
+
+
+def test_analysis_accepts_a_single_resolution(tmp_path):
+    """The guard must not block the legitimate case."""
+    root = tmp_path / "results"
+    _fake_run(root / "stage2_k5_seedA", 5, 10, 6)
+    _fake_run(root / "stage2_k10_seedA", 10, 10, 8)
+
+    r = subprocess.run(
+        [sys.executable, str(REPO / "src/analysis/plot_curve.py"),
+         "--pattern", "results/stage2_k*_seed*", "--root", str(tmp_path),
+         "--out", "c.png", "--json-out", "c.json"],
+        capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
