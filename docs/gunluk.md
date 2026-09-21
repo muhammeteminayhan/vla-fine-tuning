@@ -1,7 +1,17 @@
 # Günlük
 
 Bu dosya projenin öğrenme defteri. Her iş bloğundan sonra dört başlık:
-ne yaptım / neden böyle / yeni kavram / sırada ne var.
+**ne yaptım / neden böyle / yeni kavram / sırada ne var**.
+
+Tutulma sebebi şu: bu proje hem bitirilmek hem öğrenilmek için yapıldı. Çalışan
+kod teslim etmek yetmiyordu; neyin neden öyle yapıldığının kaydı gerekiyordu.
+Bu yüzden burada sadece başarılar yok — yanlış giden kararlar, geri alınan
+iddialar ve "az kalsın sessizce yanlış sayı üretecektik" anları da yazılı.
+Onlar en çok öğreten kısımlardı.
+
+Not: Aşağıdaki bloklar yazıldıkları anda kaydedildi, sonradan düzeltilmedi.
+Bir blokta öne sürülen bir şey sonraki bir blokta geri alınmışsa, ikisi de
+duruyor.
 
 ---
 
@@ -142,7 +152,7 @@ Tuzağın asıl kötülüğü sessiz olması: her şey "çalışıyor" görünü
 
 ---
 
-## 2026-09-08 — Faz 1 başlangıcı: ölçüm aletinin içine bakmak
+## 2026-09-08 — Faz 1: Ölçüm altyapısı
 
 ### Blok 4 — `lerobot-eval` kaynak okuması
 
@@ -225,7 +235,7 @@ alanı olarak yazdım. Faz 3'te K=5 çıkınca teyit edilecek.
 
 ---
 
-### Blok 6 — Faz 1: ölçüm altyapısı ve determinizm kapısı
+### Blok 6 — Harness ve determinizm kapısı
 
 **Ne yaptım.** `src/eval/run_eval.py` (sarmalayıcı + şema),
 `src/eval/check_determinism.py` (kapı), `src/eval/summarize.py` (tablo + güven
@@ -279,6 +289,10 @@ diye etiketliyor, 1'de hiç göstermiyor.
 
 ---
 
+---
+
+## 2026-09-08 — Ara iş: altyapı
+
 ### Blok 7 — Kalıcı GitHub girişi (SSH)
 
 **Ne yaptım.** Verdiğin token'la bekleyen Faz 1 commit'ini push ettim, sonra
@@ -294,7 +308,11 @@ giden şey sadece açık yarısı.
 
 ---
 
-### Blok 8 — Faz 2: deney tasarımı ve veri hazırlığı
+---
+
+## 2026-09-08 — Faz 2: Deney tasarımı ve veri
+
+### Blok 8 — Dataset envanteri ve K-shot alt-kümeleri
 
 **Ne yaptım.** `lerobot/libero`'yu indirdim (1.9 GB, revision
 `a1aaacb7...`), içeriğini çıkardım, K-shot alt-küme üreticisini yazdım ve
@@ -344,7 +362,11 @@ nerede doyuma ulaştığını değiştirmiyor** — asıl bilimsel sonuç bundan
 
 ---
 
-### Blok 9 — Faz 3 adım 1: batch size ve throughput ölçümü
+---
+
+## 2026-09-09 — Faz 3: Eğitim döngüsü
+
+### Blok 9 — Batch size ve throughput ölçümü
 
 **Ne yaptım.** `batch_size ∈ {1,2,4,8,16,32,64}` için LoRA fine-tune koşturup her
 birinde peak VRAM ve throughput ölçtüm. 64'te OOM aldım — bu aramanın hedefiydi,
@@ -461,7 +483,7 @@ koşuları, her birinin ardından eval.
 
 ---
 
-### Blok 12 — Faz 3 tamamlandı: üç seed, tam eğri
+### Blok 12 — Üç seed, tam eğri
 
 **Ne yaptım.** Driver gece 01:50'de başladı, 18:46'da bitti. 1. aşama + 4 K × 3
 seed = 13 eğitim koşusu, toplam **15.3 saat**, her birinin ardından eval.
