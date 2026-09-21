@@ -33,6 +33,18 @@ fi
 
 [ -d "$STAGE1_CKPT" ] || { say "stage1 checkpoint missing at $STAGE1_CKPT"; exit 1; }
 
+# ---- K=0 reference: the factory's model on parts it has never seen --------
+BASELINE="stage1_baseline_n${EVAL_EPS}"
+if [ ! -f "results/${BASELINE}/results.json" ]; then
+  say "eval $BASELINE START"
+  python src/eval/run_eval.py --policy "$STAGE1_CKPT" --suite libero_object \
+      --n-episodes "$EVAL_EPS" --seed 1000 --batch-size 1 --run-id "$BASELINE" \
+      >> "$RAW" 2>&1 \
+    && say "eval $BASELINE DONE" || say "eval $BASELINE FAILED"
+else
+  say "eval $BASELINE SKIP"
+fi
+
 # ---- stage 2: K-shot runs, seed-major -----------------------------------
 for SEED in 0 1 2; do
   for K in 5 10 20 40; do
@@ -50,7 +62,10 @@ for SEED in 0 1 2; do
       say "train $SPLIT SKIP (checkpoint present)"
     fi
 
-    RUN="stage2_${SPLIT}"
+    # Name runs by their eval resolution: runs at different n_episodes draw
+    # different initial states (docs/01-eval-harness.md §6) and must never be
+    # pooled, so the resolution belongs in the identifier.
+    RUN="stage2_${SPLIT}_n${EVAL_EPS}"
     if [ ! -f "results/${RUN}/results.json" ]; then
       say "eval $SPLIT START"
       python src/eval/run_eval.py --policy "$CKPT" \
