@@ -88,6 +88,12 @@ def build_command(a, out_dir: Path) -> list[str]:
         cmd.append(f"--env.task_ids=[{','.join(str(t) for t in a.task_ids)}]")
     if a.base_model:
         cmd.append(f"--rename_map={json.dumps(BASE_MODEL_RENAME_MAP)}")
+    if a.record:
+        # Writes each rollout as a LeRobot dataset, including observation.state
+        # (eef_pos, gripper_qpos). Needed to tell a missed grasp from a wrong
+        # object; the rendered video alone cannot. Much larger on disk, so it
+        # is opt-in for targeted diagnostic runs rather than the default.
+        cmd.append("--eval.recording=true")
     return cmd
 
 
@@ -162,6 +168,8 @@ def main() -> int:
     p.add_argument("--control-mode", default="relative", choices=["relative", "absolute"])
     p.add_argument("--base-model", action="store_true",
                    help="un-finetuned smolvla_base: adds rename_map")
+    p.add_argument("--record", action="store_true",
+                   help="also record rollouts as a dataset (state included), for failure analysis")
     p.add_argument("--run-id", default=None)
     p.add_argument("--results-root", default=str(REPO_ROOT / "results"))
     p.add_argument("--dry-run", action="store_true")
@@ -203,7 +211,8 @@ def main() -> int:
                    "is_base_model": a.base_model},
         "env": {"type": "libero", "suite": a.suite, "task_ids": a.task_ids,
                 "control_mode": a.control_mode, "init_states": True, "hard_reset": True},
-        "eval": {"n_episodes": a.n_episodes, "batch_size": a.batch_size, "start_seed": a.seed},
+        "eval": {"n_episodes": a.n_episodes, "batch_size": a.batch_size,
+                 "start_seed": a.seed, "recording": a.record},
         "command": cmd,
         "episodes": episodes,
         "summary": summarize(episodes),

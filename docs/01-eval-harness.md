@@ -203,3 +203,50 @@ meaningless.
 | **Determinism: same command twice → identical results** | ✅ §4 |
 
 **Phase 1 gate: PASSED.**
+
+---
+
+## 6. Changing `n_episodes` changes which episodes you get
+
+Added in Phase 4, after assuming otherwise.
+
+Seeds are `start_seed + episode_ix`, so raising `--n-episodes` from 5 to 10
+looks like it should repeat the first five rollouts and append five more. It
+does not. Comparing the two sweeps episode by episode, only 11 of 50 rollouts
+matched — and those are mostly pairs where both runs failed and both ran the
+full 280 steps, which matches on success and length without being the same
+rollout.
+
+The cause is in `LiberoEnv` (`lerobot/envs/libero.py:173-175, 345-346`):
+
+```python
+self._reset_stride = n_envs            # stride = number of parallel envs
+self.init_state_id = self.episode_index
+...
+set_init_state(self._init_states[self.init_state_id % len(self._init_states)])
+self.init_state_id += self._reset_stride
+```
+
+`create_libero_envs` is called with `n_envs = n_episodes`, so the stride *is*
+the episode count. Instantiating sub-envs directly confirms that the first reset
+of episode *i* uses `init_states[i]` under both settings, and that the sequences
+diverge immediately afterwards: episode 0 walks `[0, 5, 10]` at `n_envs=5` and
+`[0, 10, 20]` at `n_envs=10`. Since a rollout is not the first reset the env
+sees, the two sweeps draw different initial states.
+
+**Consequences.**
+
+- The 5-episode and 10-episode sweeps are two independent samples of the same
+  distribution, not a subset and a superset. Neither supersedes the other
+  episode-by-episode; the 10-episode one is simply the larger sample and the
+  published protocol, so it is the one reported.
+- Pooling them would be averaging two experiments. `plot_curve.py`,
+  `task_difficulty.py` and `failure_analysis.py` refuse to do it, and a test
+  holds them to that.
+- The Phase 1 determinism gate is unaffected: it ran the *same* command twice,
+  which remains bit-identical.
+
+The general shape of this mistake is worth keeping: a seeding scheme that looks
+like it indexes episodes independently (`start_seed + episode_ix`) turned out to
+have a second, undocumented dependency on a batching parameter. Reading the seed
+formula was not enough.
