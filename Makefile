@@ -11,7 +11,7 @@ DATASET_REV := a1aaacb7f6cd6ee5fb43120f673cebb0cfea7dd4
 DATASET_ROOT := $$HOME/.cache/huggingface/hub/datasets--lerobot--libero/snapshots/$(DATASET_REV)
 STAGE1 := checkpoints/stage1/checkpoints/last/pretrained_model
 
-.PHONY: help verify data splits sweep stage1 train lint verify-runs curve clean-results reproduce
+.PHONY: help verify data splits sweep stage1 train test lint verify-runs curve clean-results reproduce
 
 help:
 	@echo "  verify         Phase 0: run the six environment checks"
@@ -21,7 +21,7 @@ help:
 	@echo "  stage1         Phase 3: pre-train the factory's existing line"
 	@echo "  train          Phase 3: run the full K-shot study (long; resumable)"
 	@echo "  curve          Phase 4: draw the teaching cost curve from results/"
-	@echo "  lint           Check code style (ruff)\n  verify-runs    Phase 3 gate\n  clean-results  Remove derived outputs, keeping checkpoints"
+	@echo "  test           Run the invariant tests (no GPU, no dataset)\n  lint           Check code style (ruff)\n  verify-runs    Phase 3 gate\n  clean-results  Remove derived outputs, keeping checkpoints"
 	@echo "  reproduce      Everything, end to end"
 
 verify:  ## Phase 0: run the six environment checks
@@ -42,6 +42,9 @@ stage1:  ## Phase 3: pre-train the "factory's existing line"
 
 train:  ## Phase 3: run the full K-shot study (long; idempotent, safe to resume)
 	@$(CONDA) && bash scripts/run_phase3.sh 6000 10 6000
+
+test:  ## Run the invariant tests (no GPU, no dataset)
+	@$(CONDA) && python -m pytest tests -q
 
 lint:  ## Check code style (ruff)
 	@$(CONDA) && ruff check src scripts
