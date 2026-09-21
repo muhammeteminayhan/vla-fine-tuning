@@ -1,0 +1,32 @@
+name: ci
+
+# The heavy parts of this project need an sm_120 GPU, a 1.9 GB dataset and
+# roughly 20 hours of training, so CI cannot reproduce the study. What it can do
+# is check the things that would quietly corrupt it: the invariants the reported
+# numbers rest on, and that the code still lints.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install check-only dependencies
+        # Deliberately not the project environment: torch, LeRobot and MuJoCo are
+        # not needed to verify the invariants, and pinning them here would
+        # duplicate the sm_120-specific install documented in docs/00-environment.md.
+        run: pip install --quiet pytest numpy ruff
+
+      - name: Lint
+        run: ruff check src scripts tests
+
+      - name: Invariant tests
+        run: pytest tests -q
