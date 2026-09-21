@@ -17,7 +17,6 @@ os.environ.setdefault("MUJOCO_GL", "egl")
 import gymnasium as gym  # noqa: E402
 import imageio  # noqa: E402
 import numpy as np  # noqa: E402
-
 from lerobot.envs.libero import create_libero_envs  # noqa: E402
 
 p = argparse.ArgumentParser()

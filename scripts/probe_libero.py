@@ -9,7 +9,6 @@ import os
 os.environ.setdefault("MUJOCO_GL", "egl")
 
 import gymnasium as gym  # noqa: E402
-
 from lerobot.envs.libero import create_libero_envs  # noqa: E402
 
 SUITE = "libero_object"

@@ -20,7 +20,6 @@ So this checks four things, from weakest to strongest:
 import argparse
 import hashlib
 import json
-import sys
 from pathlib import Path
 
 
@@ -56,7 +55,7 @@ def main() -> int:
     hb = [video_hash(a_args.run_b, e) for e in B["episodes"]]
     have_videos = all(h is not None for h in ha + hb) and len(ha) > 0
     checks.append(("videos byte-identical across runs", have_videos and ha == hb,
-                   f"{sum(x == y for x, y in zip(ha, hb))}/{len(ha)} match"))
+                   f"{sum(x == y for x, y in zip(ha, hb, strict=True))}/{len(ha)} match"))
 
     # 4. non-degeneracy: different seeds must give different rollouts
     distinct = len(set(h for h in ha if h))

@@ -95,10 +95,10 @@ def main() -> int:
     # Verify nesting rather than trusting the construction.
     for seed in a.seeds:
         ks = sorted(a.k_values)
-        for small, large in zip(ks, ks[1:]):
-            s = set(splits[f"k{small}_seed{seed}"]["episodes"])
-            l = set(splits[f"k{large}_seed{seed}"]["episodes"])
-            if not s.issubset(l):
+        for small, large in zip(ks, ks[1:], strict=False):
+            smaller = set(splits[f"k{small}_seed{seed}"]["episodes"])
+            bigger = set(splits[f"k{large}_seed{seed}"]["episodes"])
+            if not smaller.issubset(bigger):
                 raise SystemExit(f"nesting broken: k{small} not a subset of k{large} (seed {seed})")
 
     payload = {
@@ -120,8 +120,10 @@ def main() -> int:
     out.write_text(json.dumps(payload, indent=2) + "\n")
 
     print(f"held-out suite : libero_object ({len(task_ids)} tasks)")
-    print(f"episodes/task  : {min(available.values())}-{max(available.values())}  -> max feasible K = {max_k}")
-    print(f"mean demo      : {suite_mean_frames:.1f} frames / {CONTROL_HZ:.0f} Hz = {suite_mean_demo_s:.2f} s")
+    print(f"episodes/task  : {min(available.values())}-{max(available.values())}"
+          f"  -> max feasible K = {max_k}")
+    print(f"mean demo      : {suite_mean_frames:.1f} frames / {CONTROL_HZ:.0f} Hz"
+          f" = {suite_mean_demo_s:.2f} s")
     print(f"reset assumed  : {a.reset_seconds:.0f} s per demonstration\n")
     print(f"| {'K':>3} | {'episodes':>8} | {'min/task':>9} | {'min all 10':>11} |")
     print(f"|{'-'*5}|{'-'*10}|{'-'*11}|{'-'*13}|")

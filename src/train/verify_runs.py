@@ -35,7 +35,7 @@ def main() -> int:
     print(f"comparing {len(records)} stage-2 runs: {', '.join(sorted(records))}\n")
 
     values = defaultdict(set)
-    for name, rec in records.items():
+    for rec in records.values():
         for k, v in rec.items():
             values[k].add(json.dumps(v, sort_keys=True))
 

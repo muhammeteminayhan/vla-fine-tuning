@@ -42,7 +42,8 @@ def sh(cmd: list[str]) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--split", required=True, help="key in configs/kshot_splits.json, e.g. k40_seed0")
+    ap.add_argument("--split", required=True,
+                    help="key in configs/kshot_splits.json, e.g. k40_seed0")
     ap.add_argument("--init-from", default="lerobot/smolvla_base",
                     help="stage-2 runs start from the stage-1 checkpoint")
     ap.add_argument("--steps", type=int, required=True)
@@ -56,7 +57,8 @@ def main() -> int:
     if a.split == "stage1":
         # The factory's existing line: libero_spatial + libero_goal + libero_10.
         # Not a K-shot split, so it carries no K and uses the study's base seed.
-        eps = json.loads((REPO / "configs" / "stage1_split.json").read_text())["stage1_train_episodes"]
+        stage1 = json.loads((REPO / "configs" / "stage1_split.json").read_text())
+        eps = stage1["stage1_train_episodes"]
         spec = {"K": None, "seed": 0, "n_episodes_total": len(eps), "episodes": eps}
     else:
         splits = json.loads((REPO / "configs" / "kshot_splits.json").read_text())

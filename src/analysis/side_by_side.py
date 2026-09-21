@@ -79,7 +79,8 @@ def main() -> int:
 
     vf = (
         f"[0:v]scale=360:360{tpad_l},{label('BEFORE - factory model, part never seen', 'h-32')}[l];"
-        f"[1:v]scale=360:360{tpad_r},{label('AFTER - 20 demonstrations (9 operator min)', 'h-32')}[r];"
+        f"[1:v]scale=360:360{tpad_r},"
+        f"{label('AFTER - 20 demonstrations (9 operator min)', 'h-32')}[r];"
         f"[l][r]hstack=inputs=2:shortest=1,pad=iw:ih+36:0:36:black,{label(name, '9')}"
     )
 

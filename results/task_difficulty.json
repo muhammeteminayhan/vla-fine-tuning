@@ -1,98 +1,98 @@
 {
-  "n_runs": 9,
+  "n_runs": 12,
   "tasks": [
-    {
-      "task_id": 8,
-      "task": "pick up the tomato sauce and place it in the basket",
-      "n": 45,
-      "n_success": 43,
-      "rate": 0.9555555555555556,
-      "wilson_lo": 0.8517222081611939,
-      "wilson_hi": 0.9877261309595557
-    },
     {
       "task_id": 6,
       "task": "pick up the salad dressing and place it in the basket",
-      "n": 45,
-      "n_success": 41,
-      "rate": 0.9111111111111111,
-      "wilson_lo": 0.792661488316343,
-      "wilson_hi": 0.9648894518657969
+      "n": 60,
+      "n_success": 56,
+      "rate": 0.9333333333333333,
+      "wilson_lo": 0.8407442010623228,
+      "wilson_hi": 0.973771725856802
+    },
+    {
+      "task_id": 8,
+      "task": "pick up the tomato sauce and place it in the basket",
+      "n": 60,
+      "n_success": 52,
+      "rate": 0.8666666666666667,
+      "wilson_lo": 0.7583460540992789,
+      "wilson_hi": 0.9308597302169036
     },
     {
       "task_id": 1,
       "task": "pick up the ketchup and place it in the basket",
-      "n": 45,
-      "n_success": 35,
-      "rate": 0.7777777777777778,
-      "wilson_lo": 0.637304262026367,
-      "wilson_hi": 0.8745544813399436
+      "n": 60,
+      "n_success": 48,
+      "rate": 0.8,
+      "wilson_lo": 0.6821795390818299,
+      "wilson_hi": 0.8817161026314104
     },
     {
       "task_id": 2,
       "task": "pick up the cream cheese and place it in the basket",
-      "n": 45,
-      "n_success": 35,
-      "rate": 0.7777777777777778,
-      "wilson_lo": 0.637304262026367,
-      "wilson_hi": 0.8745544813399436
-    },
-    {
-      "task_id": 9,
-      "task": "pick up the chocolate pudding and place it in the basket",
-      "n": 45,
-      "n_success": 35,
-      "rate": 0.7777777777777778,
-      "wilson_lo": 0.637304262026367,
-      "wilson_hi": 0.8745544813399436
+      "n": 60,
+      "n_success": 48,
+      "rate": 0.8,
+      "wilson_lo": 0.6821795390818299,
+      "wilson_hi": 0.8817161026314104
     },
     {
       "task_id": 0,
       "task": "pick up the orange juice and place it in the basket",
-      "n": 45,
-      "n_success": 33,
+      "n": 60,
+      "n_success": 44,
       "rate": 0.7333333333333333,
-      "wilson_lo": 0.5896088330282471,
-      "wilson_hi": 0.8403525113994538
+      "wilson_lo": 0.6099104639810865,
+      "wilson_hi": 0.8286750351292115
+    },
+    {
+      "task_id": 9,
+      "task": "pick up the chocolate pudding and place it in the basket",
+      "n": 60,
+      "n_success": 44,
+      "rate": 0.7333333333333333,
+      "wilson_lo": 0.6099104639810865,
+      "wilson_hi": 0.8286750351292115
     },
     {
       "task_id": 4,
       "task": "pick up the alphabet soup and place it in the basket",
-      "n": 45,
-      "n_success": 31,
-      "rate": 0.6888888888888889,
-      "wilson_lo": 0.5433492001245104,
-      "wilson_hi": 0.8047147453645809
+      "n": 60,
+      "n_success": 43,
+      "rate": 0.7166666666666667,
+      "wilson_lo": 0.5923247495026482,
+      "wilson_hi": 0.8149332139569141
     },
     {
       "task_id": 7,
       "task": "pick up the butter and place it in the basket",
-      "n": 45,
-      "n_success": 31,
-      "rate": 0.6888888888888889,
-      "wilson_lo": 0.5433492001245104,
-      "wilson_hi": 0.8047147453645809
-    },
-    {
-      "task_id": 5,
-      "task": "pick up the milk and place it in the basket",
-      "n": 45,
-      "n_success": 23,
-      "rate": 0.5111111111111111,
-      "wilson_lo": 0.3700422432648975,
-      "wilson_hi": 0.6504321064697549
+      "n": 60,
+      "n_success": 40,
+      "rate": 0.6666666666666666,
+      "wilson_lo": 0.540566298666634,
+      "wilson_hi": 0.7727090578407216
     },
     {
       "task_id": 3,
       "task": "pick up the bbq sauce and place it in the basket",
-      "n": 45,
-      "n_success": 18,
-      "rate": 0.4,
-      "wilson_lo": 0.27024679447957545,
-      "wilson_hi": 0.5454840579085527
+      "n": 60,
+      "n_success": 30,
+      "rate": 0.5,
+      "wilson_lo": 0.37734812427246284,
+      "wilson_hi": 0.6226518757275372
+    },
+    {
+      "task_id": 5,
+      "task": "pick up the milk and place it in the basket",
+      "n": 60,
+      "n_success": 30,
+      "rate": 0.5,
+      "wilson_lo": 0.37734812427246284,
+      "wilson_hi": 0.6226518757275372
     }
   ],
-  "hardest": 3,
-  "easiest": 8,
+  "hardest": 5,
+  "easiest": 6,
   "intervals_disjoint": true
 }

@@ -1,0 +1,34 @@
+# This repository is a study, not a distributable library: the deliverable is a
+# measured curve plus the scripts that produced it. The metadata below exists so
+# the tree is navigable and the tooling config has one home.
+
+[project]
+name = "vla-teaching-cost"
+version = "0.1.0"
+description = "How much operator time does it take to teach a robot cell a new part? A measured curve for SmolVLA on held-out LIBERO tasks."
+requires-python = ">=3.12"
+readme = "README.md"
+
+# Deliberately empty. The environment is built from LeRobot's own source install
+# plus a pinned torch wheel, because the sm_120 GPU this runs on needs a
+# specific CUDA build that a dependency list here could silently override.
+# See docs/00-environment.md for the exact, reproducible sequence.
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/muhammeteminayhan/vla-fine-tuning"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# Env vars such as MUJOCO_GL must be set before the module that reads them is
+# imported, so these files import below top-level statements on purpose.
+"src/eval/run_eval.py" = ["E402"]
+"src/data/inspect_dataset.py" = ["E402"]
+"src/analysis/plot_curve.py" = ["E402"]
+"scripts/*.py" = ["E402"]

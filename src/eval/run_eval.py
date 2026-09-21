@@ -40,7 +40,8 @@ def git_info() -> dict:
     return {
         "commit": sh(["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"]) or None,
         "dirty": bool(sh(["git", "-C", str(REPO_ROOT), "status", "--porcelain"])),
-        "lerobot_commit": sh(["git", "-C", str(Path.home() / "lerobot"), "rev-parse", "HEAD"]) or None,
+        "lerobot_commit": sh(
+            ["git", "-C", str(Path.home() / "lerobot"), "rev-parse", "HEAD"]) or None,
     }
 
 
@@ -128,7 +129,8 @@ def index_failures(episodes: list[dict], run_dir: Path, raw_dir: Path) -> int:
         src = (raw_dir / ep["video"]).resolve()
         if not src.exists():
             continue
-        link = fail_dir / f"{ep['suite']}_task{ep['task_id']}_ep{ep['episode_ix']}_seed{ep['seed']}.mp4"
+        link = fail_dir / (f"{ep['suite']}_task{ep['task_id']}"
+                           f"_ep{ep['episode_ix']}_seed{ep['seed']}.mp4")
         link.unlink(missing_ok=True)
         link.symlink_to(src)
         n += 1
@@ -155,15 +157,18 @@ def main() -> int:
     p.add_argument("--n-episodes", type=int, default=10)
     p.add_argument("--seed", type=int, default=1000)
     p.add_argument("--batch-size", type=int, default=1)
-    p.add_argument("--n-action-steps", type=int, default=10, help="fixed project-wide; see CLAUDE.md")
+    p.add_argument("--n-action-steps", type=int, default=10,
+                   help="fixed project-wide; see CLAUDE.md")
     p.add_argument("--control-mode", default="relative", choices=["relative", "absolute"])
-    p.add_argument("--base-model", action="store_true", help="un-finetuned smolvla_base: adds rename_map")
+    p.add_argument("--base-model", action="store_true",
+                   help="un-finetuned smolvla_base: adds rename_map")
     p.add_argument("--run-id", default=None)
     p.add_argument("--results-root", default=str(REPO_ROOT / "results"))
     p.add_argument("--dry-run", action="store_true")
     a = p.parse_args()
 
-    run_id = a.run_id or f"{a.suite}_seed{a.seed}_nas{a.n_action_steps}_{datetime.datetime.now():%Y%m%dT%H%M%S}"
+    stamp = f"{datetime.datetime.now():%Y%m%dT%H%M%S}"
+    run_id = a.run_id or f"{a.suite}_seed{a.seed}_nas{a.n_action_steps}_{stamp}"
     run_dir = Path(a.results_root) / run_id
     raw_dir = run_dir / "lerobot_raw"
     cmd = build_command(a, raw_dir)
@@ -179,7 +184,8 @@ def main() -> int:
 
     eval_info_path = raw_dir / "eval_info.json"
     if rc != 0 or not eval_info_path.exists():
-        print(f"FAILED: exit={rc}, eval_info.json present={eval_info_path.exists()}", file=sys.stderr)
+        print(f"FAILED: exit={rc}, eval_info.json present={eval_info_path.exists()}",
+              file=sys.stderr)
         return rc or 1
 
     eval_info = json.loads(eval_info_path.read_text())
@@ -193,7 +199,8 @@ def main() -> int:
         "wall_clock_s": round((ended - started).total_seconds(), 2),
         "git": git_info(),
         "system": system_info(),
-        "policy": {"path": a.policy, "n_action_steps": a.n_action_steps, "is_base_model": a.base_model},
+        "policy": {"path": a.policy, "n_action_steps": a.n_action_steps,
+                   "is_base_model": a.base_model},
         "env": {"type": "libero", "suite": a.suite, "task_ids": a.task_ids,
                 "control_mode": a.control_mode, "init_states": True, "hard_reset": True},
         "eval": {"n_episodes": a.n_episodes, "batch_size": a.batch_size, "start_seed": a.seed},
@@ -202,7 +209,8 @@ def main() -> int:
         "summary": summarize(episodes),
         "failures_indexed": n_failures_indexed,
         "notes": {
-            "seed_derivation": "seed = start_seed + episode_ix; verified by scripts/verify_seed_mapping.py",
+            "seed_derivation": ("seed = start_seed + episode_ix; "
+                                "verified by scripts/verify_seed_mapping.py"),
             "episode_length_source": "frame count of the rendered video (ffprobe -count_frames)",
             "failure_videos": "symlinked under failures/ for Phase 4 error analysis",
         },

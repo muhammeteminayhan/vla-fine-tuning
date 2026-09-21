@@ -109,4 +109,6 @@ step_elapsed = time.perf_counter() - t0
 print(f"\n  step+render FPS = {N_FRAMES / step_elapsed:.1f} "
       f"({step_elapsed:.3f} s for {N_FRAMES} iters)")
 
-print(f"\nVERDICT: {'FAIL - fell back to CPU software rendering' if software else 'PASS - GPU rendering via EGL'}")
+verdict = ("FAIL - fell back to CPU software rendering" if software
+           else "PASS - GPU rendering via EGL")
+print(f"\nVERDICT: {verdict}")

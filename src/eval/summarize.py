@@ -85,7 +85,8 @@ def main() -> int:
     print(f"n_action_steps: {runs[0]['policy']['n_action_steps']}")
     for r in runs:
         print(f"  policy    : {r['policy']['path']}")
-    print(f"suite       : {runs[0]['env']['suite']}   control_mode={runs[0]['env']['control_mode']}")
+    print(f"suite       : {runs[0]['env']['suite']}"
+          f"   control_mode={runs[0]['env']['control_mode']}")
     print(f"runs        : {len(runs)}   training runs={len(run_keys)}   episodes={n}\n")
 
     print(f"| {'task':<22} | {'n':>4} | {'success':>7} | {'rate':>7} |")
@@ -119,7 +120,7 @@ def main() -> int:
             "wilson95": [lo, hi],
             "per_task": {t: {"n": len(v), "k": sum(v), "rate": sum(v) / len(v)}
                          for t, v in sorted(per_task.items())},
-            "per_run_rate": dict(zip(run_keys, seed_rates)),
+            "per_run_rate": dict(zip(run_keys, seed_rates, strict=True)),
             "source_runs": [r["run_id"] for r in runs],
         }
         a.json_out.parent.mkdir(parents=True, exist_ok=True)

@@ -78,8 +78,10 @@ def main() -> int:
     print(f"codebase_version : {info['codebase_version']}")
     print(f"fps (metadata)   : {fps}")
     print(f"episodes         : {info['total_episodes']}  (metadata) / {len(df)} (counted)")
-    print(f"frames           : {info['total_frames']}  (metadata) / {int(df.length.sum())} (counted)")
-    print(f"tasks            : {info['total_tasks']}  (metadata) / {df.task_index.nunique()} (counted)")
+    print(f"frames           : {info['total_frames']}  (metadata)"
+          f" / {int(df.length.sum())} (counted)")
+    print(f"tasks            : {info['total_tasks']}  (metadata)"
+          f" / {df.task_index.nunique()} (counted)")
 
     unmapped = df[df.suite.isna()]["task"].unique()
     print(f"\ntasks not matched to a suite: {len(unmapped)}")

@@ -33,8 +33,10 @@ print(f"\nplateau samples/s (bs>=4): {sps:.2f}")
 # Dataset sizes actually seen by each run.
 obj = inv["per_suite"]["libero_object"]["frames_per_episode_mean"]
 k_frames = {k: round(10 * k * obj) for k in splits["k_values"]}
-stage1_frames = sum(inv["per_suite"][s]["n_episodes"] * inv["per_suite"][s]["frames_per_episode_mean"]
-                    for s in ["libero_spatial", "libero_goal", "libero_10"])
+stage1_frames = sum(
+    inv["per_suite"][s]["n_episodes"] * inv["per_suite"][s]["frames_per_episode_mean"]
+    for s in ["libero_spatial", "libero_goal", "libero_10"]
+)
 print("\n=== dataset size per run (frames) ===")
 for k, f in k_frames.items():
     print(f"  K={k:<3} {f:>8,}")
@@ -45,7 +47,7 @@ def hours(samples: float) -> float:
     return samples / sps / 3600
 
 
-print(f"\n=== scenarios (3 seeds x 4 K values = 12 stage-2 runs) ===")
+print("\n=== scenarios (3 seeds x 4 K values = 12 stage-2 runs) ===")
 BS = 16
 scenarios = {
     "docs default (100k steps)": 100_000,
@@ -54,7 +56,8 @@ scenarios = {
     "5k steps": 5_000,
 }
 print(f"assuming batch_size={BS}\n")
-print(f"| {'steps per run':<26} | {'h / run':>8} | {'12 runs':>9} | {'+ stage1':>9} | {'total':>8} |")
+print(f"| {'steps per run':<26} | {'h / run':>8} | {'12 runs':>9} |"
+      f" {'+ stage1':>9} | {'total':>8} |")
 print(f"|{'-'*28}|{'-'*10}|{'-'*11}|{'-'*11}|{'-'*10}|")
 rows = {}
 for name, steps in scenarios.items():
@@ -68,7 +71,7 @@ for name, steps in scenarios.items():
 
 print("\n=== epochs each scenario implies (how many times each demo is seen) ===")
 print(f"| {'steps':>7} | " + " | ".join(f"K={k:<3}" for k in k_frames) + " |")
-for name, steps in scenarios.items():
+for steps in scenarios.values():
     eps = [f"{steps*BS/f:>5.0f}" for f in k_frames.values()]
     print(f"| {steps:>7} | " + " | ".join(eps) + " |")
 
