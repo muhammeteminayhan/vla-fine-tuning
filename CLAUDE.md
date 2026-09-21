@@ -251,6 +251,17 @@ Varsayılan LoRA hedef modülleri: LM expert'teki `q_proj`/`v_proj` + state/acti
 Farklı katman hedeflemek için `--peft.target_modules`, bir katmanı tam eğitmek için
 `--peft.full_training_modules` var. `scaling = lora_alpha / r`.
 
+**`--eval.n_episodes` bir örneklem boyutu değil, aynı zamanda hangi başlangıç
+durumlarının kullanılacağını belirliyor.** `LiberoEnv._reset_stride = n_envs` ve
+`create_libero_envs` bunu `n_episodes`'ten alıyor, yani episode sayısını
+değiştirmek rollout'ları da değiştiriyor. 5 ve 10 episode'luk koşular aynı
+dağılımdan **iki ayrı örneklem**, biri diğerinin alt kümesi değil. Ölçülen kanıt
+ve mekanizma: `docs/01-eval-harness.md` §6.
+
+Pratik kuralı: bir eğri için bütün noktalar **aynı `n_episodes`** ile koşulmalı,
+ve farklı çözünürlükteki koşular asla havuzlanmamalı (analiz scriptleri bunu
+reddediyor).
+
 **Faz 1 için dokümandan çıkan determinizm reçetesi:** iki policy'yi aynı episode'larda
 karşılaştırmak için aynı `--seed`, `--env.init_states=true`, ve `--eval.batch_size` =
 görev başına episode sayısı. `--env.hard_reset=false` daha hızlı ama **bit-identical
