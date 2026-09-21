@@ -2,14 +2,15 @@
   "points": [
     {
       "K": 5,
-      "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 98,
-      "success_rate": 0.6533333333333333,
-      "wilson_lo": 0.5742027248462458,
-      "wilson_hi": 0.7248061258157337,
+      "n_seeds": 4,
+      "n_episodes": 250,
+      "n_success": 159,
+      "success_rate": 0.636,
+      "wilson_lo": 0.5747152623980124,
+      "wilson_hi": 0.6931683311500901,
       "seed_rates": [
         0.58,
+        0.61,
         0.68,
         0.7
       ],
@@ -19,14 +20,15 @@
     },
     {
       "K": 10,
-      "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 106,
-      "success_rate": 0.7066666666666667,
-      "wilson_lo": 0.6293750243784035,
-      "wilson_hi": 0.7736369047746994,
+      "n_seeds": 4,
+      "n_episodes": 250,
+      "n_success": 177,
+      "success_rate": 0.708,
+      "wilson_lo": 0.6488287723066753,
+      "wilson_hi": 0.7608755472374812,
       "seed_rates": [
         0.72,
+        0.71,
         0.68,
         0.72
       ],
@@ -36,13 +38,14 @@
     },
     {
       "K": 20,
-      "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 113,
-      "success_rate": 0.7533333333333333,
-      "wilson_lo": 0.6785952428848271,
-      "wilson_hi": 0.8154193799480086,
+      "n_seeds": 4,
+      "n_episodes": 250,
+      "n_success": 177,
+      "success_rate": 0.708,
+      "wilson_lo": 0.6488287723066753,
+      "wilson_hi": 0.7608755472374812,
       "seed_rates": [
+        0.64,
         0.64,
         0.86,
         0.76

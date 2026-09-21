@@ -15,7 +15,7 @@ Two uncertainty representations, answering different questions:
 
 import argparse
 import json
-import math
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -26,16 +26,9 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.ticker import NullFormatter, NullLocator  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-
-def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    if n == 0:
-        return (float("nan"), float("nan"))
-    p = k / n
-    d = 1 + z * z / n
-    centre = (p + z * z / (2 * n)) / d
-    margin = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
-    return max(0.0, centre - margin), min(1.0, centre + margin)
+from common.stats import wilson  # noqa: E402
 
 
 def collect(pattern: str) -> dict[int, list[dict]]:

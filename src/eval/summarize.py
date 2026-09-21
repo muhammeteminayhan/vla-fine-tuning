@@ -19,19 +19,13 @@ and quoting only one of them would overstate what we know:
 import argparse
 import json
 import math
+import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-def wilson(successes: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    """Wilson score interval. Well behaved at p near 0 and 1, unlike normal approx."""
-    if n == 0:
-        return (float("nan"), float("nan"))
-    p = successes / n
-    denom = 1 + z**2 / n
-    centre = (p + z**2 / (2 * n)) / denom
-    margin = z * math.sqrt(p * (1 - p) / n + z**2 / (4 * n**2)) / denom
-    return (max(0.0, centre - margin), min(1.0, centre + margin))
+from common.stats import wilson  # noqa: E402
 
 
 def load_runs(paths: list[Path]) -> list[dict]:

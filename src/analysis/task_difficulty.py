@@ -11,19 +11,14 @@ change with K".
 
 import argparse
 import json
-import math
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-
-def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    p = k / n
-    d = 1 + z * z / n
-    c = (p + z * z / (2 * n)) / d
-    m = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
-    return max(0.0, c - m), min(1.0, c + m)
+from common.stats import wilson  # noqa: E402
 
 
 def main() -> int:

@@ -25,8 +25,7 @@ import pytest
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-from analysis.plot_curve import wilson  # noqa: E402
-
+from common.stats import wilson  # noqa: E402
 
 # --- Wilson interval ------------------------------------------------------
 
