@@ -33,13 +33,21 @@ def main() -> int:
 
     pooled: dict[int, list[bool]] = defaultdict(list)
     runs = 0
+    resolutions = set()
     for f in sorted(REPO.glob(a.pattern)):
         r = f / "results.json"
         if not r.exists():
             continue
+        d = json.loads(r.read_text())
+        resolutions.add(d["eval"]["n_episodes"])
         runs += 1
-        for e in json.loads(r.read_text())["episodes"]:
+        for e in d["episodes"]:
             pooled[e["task_id"]].append(e["success"])
+    if len(resolutions) > 1:
+        raise SystemExit(
+            f"refusing to pool runs evaluated at different resolutions: "
+            f"{sorted(resolutions)} episodes per task matched {a.pattern!r}."
+        )
 
     rows = []
     for t in sorted(pooled):

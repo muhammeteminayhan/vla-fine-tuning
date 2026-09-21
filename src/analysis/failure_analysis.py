@@ -29,6 +29,7 @@ def main() -> int:
     a = ap.parse_args()
 
     succ, fail = [], []
+    resolutions: set[int] = set()
     by_task = defaultdict(lambda: {"n": 0, "fail": 0})
     by_k = defaultdict(lambda: {"n": 0, "fail": 0})
     for f in sorted(REPO.glob(a.pattern)):
@@ -36,13 +37,21 @@ def main() -> int:
         if not r.exists():
             continue
         K = int(f.name.split("_")[1][1:])
-        for e in json.loads(r.read_text())["episodes"]:
+        d = json.loads(r.read_text())
+        resolutions.add(d["eval"]["n_episodes"])
+        for e in d["episodes"]:
             (succ if e["success"] else fail).append(e.get("episode_length"))
             by_task[e["task_id"]]["n"] += 1
             by_k[K]["n"] += 1
             if not e["success"]:
                 by_task[e["task_id"]]["fail"] += 1
                 by_k[K]["fail"] += 1
+
+    if len(resolutions) > 1:
+        raise SystemExit(
+            f"refusing to pool runs evaluated at different resolutions: "
+            f"{sorted(resolutions)} episodes per task matched {a.pattern!r}."
+        )
 
     succ = [x for x in succ if x is not None]
     fail = [x for x in fail if x is not None]

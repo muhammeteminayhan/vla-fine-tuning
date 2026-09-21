@@ -53,7 +53,14 @@ verify-runs:  ## Phase 3 gate: prove no run changed configuration
 	@$(CONDA) && python src/train/verify_runs.py
 
 curve:  ## Phase 4: draw the teaching cost curve from results/
-	@$(CONDA) && python src/analysis/plot_curve.py --baseline results/stage1_baseline
+	@$(CONDA) && python src/analysis/plot_curve.py \
+		--pattern 'results/stage2_k*_seed*_n10' \
+		--baseline results/stage1_baseline_n10
+	@$(CONDA) && python src/analysis/task_difficulty.py \
+		--pattern 'results/stage2_k*_seed*_n10'
+	@$(CONDA) && python src/analysis/failure_analysis.py \
+		--pattern 'results/stage2_k*_seed*_n10'
+	@$(CONDA) && python src/analysis/make_index.py
 
 clean-results:  ## Remove derived outputs, keeping checkpoints
 	rm -rf results/teaching_cost_curve.json assets/teaching_cost_curve.png

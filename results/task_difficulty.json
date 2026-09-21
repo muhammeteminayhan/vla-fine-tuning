@@ -1,95 +1,95 @@
 {
-  "n_runs": 15,
+  "n_runs": 12,
   "tasks": [
     {
       "task_id": 6,
       "task": "pick up the salad dressing and place it in the basket",
-      "n": 90,
-      "n_success": 84,
+      "n": 60,
+      "n_success": 56,
       "rate": 0.9333333333333333,
-      "wilson_lo": 0.8620973805849326,
-      "wilson_hi": 0.9690904934496107
+      "wilson_lo": 0.8407442010623228,
+      "wilson_hi": 0.973771725856802
     },
     {
       "task_id": 8,
       "task": "pick up the tomato sauce and place it in the basket",
-      "n": 90,
-      "n_success": 81,
-      "rate": 0.9,
-      "wilson_lo": 0.8207564910060137,
-      "wilson_hi": 0.9464938542566417
-    },
-    {
-      "task_id": 2,
-      "task": "pick up the cream cheese and place it in the basket",
-      "n": 90,
-      "n_success": 76,
-      "rate": 0.8444444444444444,
-      "wilson_lo": 0.755669687335892,
-      "wilson_hi": 0.9050181099736166
+      "n": 60,
+      "n_success": 52,
+      "rate": 0.8666666666666667,
+      "wilson_lo": 0.7583460540992789,
+      "wilson_hi": 0.9308597302169036
     },
     {
       "task_id": 1,
       "task": "pick up the ketchup and place it in the basket",
-      "n": 90,
-      "n_success": 67,
-      "rate": 0.7444444444444445,
-      "wilson_lo": 0.645621572349918,
-      "wilson_hi": 0.823253638643927
+      "n": 60,
+      "n_success": 48,
+      "rate": 0.8,
+      "wilson_lo": 0.6821795390818299,
+      "wilson_hi": 0.8817161026314104
     },
     {
-      "task_id": 9,
-      "task": "pick up the chocolate pudding and place it in the basket",
-      "n": 90,
-      "n_success": 67,
-      "rate": 0.7444444444444445,
-      "wilson_lo": 0.645621572349918,
-      "wilson_hi": 0.823253638643927
+      "task_id": 2,
+      "task": "pick up the cream cheese and place it in the basket",
+      "n": 60,
+      "n_success": 48,
+      "rate": 0.8,
+      "wilson_lo": 0.6821795390818299,
+      "wilson_hi": 0.8817161026314104
     },
     {
       "task_id": 0,
       "task": "pick up the orange juice and place it in the basket",
-      "n": 90,
-      "n_success": 59,
-      "rate": 0.6555555555555556,
-      "wilson_lo": 0.55283279348344,
-      "wilson_hi": 0.7455423407853703
+      "n": 60,
+      "n_success": 44,
+      "rate": 0.7333333333333333,
+      "wilson_lo": 0.6099104639810865,
+      "wilson_hi": 0.8286750351292115
+    },
+    {
+      "task_id": 9,
+      "task": "pick up the chocolate pudding and place it in the basket",
+      "n": 60,
+      "n_success": 44,
+      "rate": 0.7333333333333333,
+      "wilson_lo": 0.6099104639810865,
+      "wilson_hi": 0.8286750351292115
     },
     {
       "task_id": 4,
       "task": "pick up the alphabet soup and place it in the basket",
-      "n": 90,
-      "n_success": 59,
-      "rate": 0.6555555555555556,
-      "wilson_lo": 0.55283279348344,
-      "wilson_hi": 0.7455423407853703
+      "n": 60,
+      "n_success": 43,
+      "rate": 0.7166666666666667,
+      "wilson_lo": 0.5923247495026482,
+      "wilson_hi": 0.8149332139569141
     },
     {
       "task_id": 7,
       "task": "pick up the butter and place it in the basket",
-      "n": 90,
-      "n_success": 53,
-      "rate": 0.5888888888888889,
-      "wilson_lo": 0.48563048727714275,
-      "wilson_hi": 0.6848695894478919
+      "n": 60,
+      "n_success": 40,
+      "rate": 0.6666666666666666,
+      "wilson_lo": 0.540566298666634,
+      "wilson_hi": 0.7727090578407216
     },
     {
       "task_id": 3,
       "task": "pick up the bbq sauce and place it in the basket",
-      "n": 90,
-      "n_success": 43,
-      "rate": 0.4777777777777778,
-      "wilson_lo": 0.37761880660358116,
-      "wilson_hi": 0.5797561742151601
+      "n": 60,
+      "n_success": 30,
+      "rate": 0.5,
+      "wilson_lo": 0.37734812427246284,
+      "wilson_hi": 0.6226518757275372
     },
     {
       "task_id": 5,
       "task": "pick up the milk and place it in the basket",
-      "n": 90,
-      "n_success": 42,
-      "rate": 0.4666666666666667,
-      "wilson_lo": 0.3670825183252626,
-      "wilson_hi": 0.5689799529028493
+      "n": 60,
+      "n_success": 30,
+      "rate": 0.5,
+      "wilson_lo": 0.37734812427246284,
+      "wilson_hi": 0.6226518757275372
     }
   ],
   "hardest": 5,

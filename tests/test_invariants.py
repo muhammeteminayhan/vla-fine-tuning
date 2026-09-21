@@ -144,3 +144,16 @@ def test_every_run_used_the_frozen_configuration():
         assert d["env"]["init_states"] is True
         assert d["env"]["hard_reset"] is True
         assert d["eval"]["batch_size"] == 1, "batch_size 0 would be CPU-count dependent"
+
+
+# --- analysis guards ------------------------------------------------------
+
+def test_analysis_refuses_to_pool_mixed_resolutions():
+    """results/ holds both the 5- and 10-episode sweeps; the default glob matches
+    both, and averaging them would produce a plausible curve of nothing."""
+    r = subprocess.run(
+        [sys.executable, "src/analysis/plot_curve.py",
+         "--pattern", "results/stage2_k*_seed*"],
+        cwd=REPO, capture_output=True, text=True)
+    assert r.returncode != 0, "mixed-resolution pooling was not refused"
+    assert "different resolutions" in (r.stdout + r.stderr)

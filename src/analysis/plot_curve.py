@@ -68,6 +68,18 @@ def main() -> int:
     if not runs:
         raise SystemExit(f"no runs matched {a.pattern!r}")
 
+    # Runs evaluated at different episodes-per-task must never be pooled: the
+    # 5-episode and 10-episode sweeps live side by side in results/, and the
+    # default glob matches both. Averaging them produces a plausible curve that
+    # is not a measurement of anything.
+    resolutions = {r["eval"]["n_episodes"] for rs in runs.values() for r in rs}
+    if len(resolutions) > 1:
+        raise SystemExit(
+            f"refusing to pool runs evaluated at different resolutions: "
+            f"{sorted(resolutions)} episodes per task matched {a.pattern!r}. "
+            f"Pass --pattern explicitly, e.g. 'results/stage2_k*_seed*_n10'."
+        )
+
     points = []
     for k in sorted(runs):
         rs = runs[k]
