@@ -1,0 +1,77 @@
+{
+  "success_steps": {
+    "n": 435,
+    "mean": 139.89655172413794,
+    "median": 138,
+    "min": 94,
+    "max": 275
+  },
+  "failure_steps": {
+    "n": 165,
+    "mean": 280,
+    "cap": 280,
+    "at_cap": 165
+  },
+  "time_headroom_ratio": 2.028985507246377,
+  "per_k": {
+    "5": {
+      "n": 150,
+      "fail": 52
+    },
+    "10": {
+      "n": 150,
+      "fail": 44
+    },
+    "20": {
+      "n": 150,
+      "fail": 37
+    },
+    "40": {
+      "n": 150,
+      "fail": 32
+    }
+  },
+  "per_task": {
+    "0": {
+      "n": 60,
+      "fail": 16
+    },
+    "1": {
+      "n": 60,
+      "fail": 12
+    },
+    "2": {
+      "n": 60,
+      "fail": 12
+    },
+    "3": {
+      "n": 60,
+      "fail": 30
+    },
+    "4": {
+      "n": 60,
+      "fail": 17
+    },
+    "5": {
+      "n": 60,
+      "fail": 30
+    },
+    "6": {
+      "n": 60,
+      "fail": 4
+    },
+    "7": {
+      "n": 60,
+      "fail": 20
+    },
+    "8": {
+      "n": 60,
+      "fail": 8
+    },
+    "9": {
+      "n": 60,
+      "fail": 16
+    }
+  },
+  "limitation": "Failure *modes* are not classified here. The eval video is the agentview only (LiberoEnv.render returns the first camera), at 360x360, with no gripper state or object poses recorded. Separating 'wrong object' from 'missed grasp' reliably would need the harness to log object poses or the wrist camera."
+}
