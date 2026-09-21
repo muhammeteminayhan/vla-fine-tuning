@@ -18,6 +18,10 @@ assets/**/*.mkv
 results/**/*.mp4
 results/**/failures/
 
+# Driver stdout: mostly tqdm carriage returns. The milestone timelines
+# (results/*_milestones.log) are tracked instead.
+results/*_raw.log
+
 # Python
 __pycache__/
 *.py[cod]
@@ -31,3 +35,5 @@ wandb/
 
 # Derived from the gitignored rollout videos.
 results/**/failure_strips/
+
+results/reeval_n10_progress.log

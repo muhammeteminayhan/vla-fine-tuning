@@ -15,7 +15,8 @@ STAGE1_STEPS="${3:-8000}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 STAGE1_CKPT="checkpoints/stage1/checkpoints/last/pretrained_model"
-PROGRESS="results/phase3_progress.log"
+PROGRESS="results/phase3_milestones.log"   # milestones, tracked in git
+RAW="results/phase3_raw.log"                 # driver stdout, gitignored
 
 say() { echo "[$(date -Is)] $*" | tee -a "$PROGRESS"; }
 
@@ -24,7 +25,7 @@ if [ ! -d "$STAGE1_CKPT" ]; then
   say "stage1 START steps=$STAGE1_STEPS"
   python src/train/run_train.py --split stage1 --steps "$STAGE1_STEPS" \
       --batch-size 16 --save-freq 0 --out-root checkpoints \
-      >> "$PROGRESS" 2>&1 \
+      >> "$RAW" 2>&1 \
     && say "stage1 DONE" || { say "stage1 FAILED"; exit 1; }
 else
   say "stage1 SKIP (already present)"
@@ -43,7 +44,7 @@ for SEED in 0 1 2; do
       python src/train/run_train.py --split "$SPLIT" --steps "$STEPS" \
           --batch-size 16 --save-freq 0 \
           --init-from "$STAGE1_CKPT" --out-root checkpoints/stage2 \
-          >> "$PROGRESS" 2>&1 \
+          >> "$RAW" 2>&1 \
         && say "train $SPLIT DONE" || { say "train $SPLIT FAILED"; continue; }
     else
       say "train $SPLIT SKIP (checkpoint present)"
@@ -54,7 +55,7 @@ for SEED in 0 1 2; do
       say "eval $SPLIT START"
       python src/eval/run_eval.py --policy "$CKPT" \
           --suite libero_object --n-episodes "$EVAL_EPS" --seed 1000 \
-          --batch-size 1 --run-id "$RUN" >> "$PROGRESS" 2>&1 \
+          --batch-size 1 --run-id "$RUN" >> "$RAW" 2>&1 \
         && say "eval $SPLIT DONE" || say "eval $SPLIT FAILED"
     else
       say "eval $SPLIT SKIP (results present)"

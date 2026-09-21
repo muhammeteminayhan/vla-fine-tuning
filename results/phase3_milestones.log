@@ -1,0 +1,65 @@
+[2026-09-09T01:50:45+03:00] stage1 START steps=6000
+[2026-09-09T03:02:27+03:00] stage1 DONE
+[2026-09-09T03:02:27+03:00] train k5_seed0 START steps=6000
+[2026-09-09T04:13:14+03:00] train k5_seed0 DONE
+[2026-09-09T04:13:14+03:00] eval k5_seed0 START
+[2026-09-09T04:20:52+03:00] eval k5_seed0 DONE
+[2026-09-09T04:20:52+03:00] train k10_seed0 START steps=6000
+[2026-09-09T05:31:39+03:00] train k10_seed0 DONE
+[2026-09-09T05:31:39+03:00] eval k10_seed0 START
+[2026-09-09T05:38:22+03:00] eval k10_seed0 DONE
+[2026-09-09T05:38:22+03:00] train k20_seed0 START steps=6000
+[2026-09-09T06:49:10+03:00] train k20_seed0 DONE
+[2026-09-09T06:49:10+03:00] eval k20_seed0 START
+[2026-09-09T06:56:22+03:00] eval k20_seed0 DONE
+[2026-09-09T06:56:22+03:00] train k40_seed0 START steps=6000
+[2026-09-09T08:07:09+03:00] train k40_seed0 DONE
+[2026-09-09T08:07:09+03:00] eval k40_seed0 START
+[2026-09-09T08:13:58+03:00] eval k40_seed0 DONE
+[2026-09-09T08:13:58+03:00] === seed 0 complete ===
+[2026-09-09T08:13:58+03:00] train k5_seed1 START steps=6000
+[2026-09-09T08:25:05+03:00] stage1 SKIP (already present)
+[2026-09-09T08:25:05+03:00] train k5_seed0 SKIP (checkpoint present)
+[2026-09-09T08:25:05+03:00] eval k5_seed0 SKIP (results present)
+[2026-09-09T08:25:05+03:00] train k10_seed0 SKIP (checkpoint present)
+[2026-09-09T08:25:05+03:00] eval k10_seed0 SKIP (results present)
+[2026-09-09T08:25:05+03:00] train k20_seed0 SKIP (checkpoint present)
+[2026-09-09T08:25:05+03:00] eval k20_seed0 SKIP (results present)
+[2026-09-09T08:25:05+03:00] train k40_seed0 SKIP (checkpoint present)
+[2026-09-09T08:25:05+03:00] eval k40_seed0 SKIP (results present)
+[2026-09-09T08:25:05+03:00] === seed 0 complete ===
+[2026-09-09T08:25:05+03:00] train k5_seed1 START steps=6000
+[2026-09-09T09:35:34+03:00] train k5_seed1 DONE
+[2026-09-09T09:35:34+03:00] eval k5_seed1 START
+[2026-09-09T09:42:51+03:00] eval k5_seed1 DONE
+[2026-09-09T09:42:51+03:00] train k10_seed1 START steps=6000
+[2026-09-09T10:53:27+03:00] train k10_seed1 DONE
+[2026-09-09T10:53:27+03:00] eval k10_seed1 START
+[2026-09-09T11:00:42+03:00] eval k10_seed1 DONE
+[2026-09-09T11:00:42+03:00] train k20_seed1 START steps=6000
+[2026-09-09T12:11:26+03:00] train k20_seed1 DONE
+[2026-09-09T12:11:26+03:00] eval k20_seed1 START
+[2026-09-09T12:17:54+03:00] eval k20_seed1 DONE
+[2026-09-09T12:17:54+03:00] train k40_seed1 START steps=6000
+[2026-09-09T13:28:41+03:00] train k40_seed1 DONE
+[2026-09-09T13:28:41+03:00] eval k40_seed1 START
+[2026-09-09T13:35:18+03:00] eval k40_seed1 DONE
+[2026-09-09T13:35:18+03:00] === seed 1 complete ===
+[2026-09-09T13:35:18+03:00] train k5_seed2 START steps=6000
+[2026-09-09T14:46:07+03:00] train k5_seed2 DONE
+[2026-09-09T14:46:07+03:00] eval k5_seed2 START
+[2026-09-09T14:53:12+03:00] eval k5_seed2 DONE
+[2026-09-09T14:53:12+03:00] train k10_seed2 START steps=6000
+[2026-09-09T16:04:06+03:00] train k10_seed2 DONE
+[2026-09-09T16:04:06+03:00] eval k10_seed2 START
+[2026-09-09T16:10:59+03:00] eval k10_seed2 DONE
+[2026-09-09T16:10:59+03:00] train k20_seed2 START steps=6000
+[2026-09-09T17:21:42+03:00] train k20_seed2 DONE
+[2026-09-09T17:21:42+03:00] eval k20_seed2 START
+[2026-09-09T17:28:31+03:00] eval k20_seed2 DONE
+[2026-09-09T17:28:31+03:00] train k40_seed2 START steps=6000
+[2026-09-09T18:39:12+03:00] train k40_seed2 DONE
+[2026-09-09T18:39:12+03:00] eval k40_seed2 START
+[2026-09-09T18:46:20+03:00] eval k40_seed2 DONE
+[2026-09-09T18:46:20+03:00] === seed 2 complete ===
+[2026-09-09T18:46:20+03:00] PHASE 3 DRIVER FINISHED

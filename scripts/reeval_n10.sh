@@ -8,7 +8,8 @@
 set -u
 export MUJOCO_GL=egl
 cd "$(dirname "$0")/.."
-LOG=results/reeval_n10_progress.log
+LOG=results/reeval_n10_milestones.log   # milestones, tracked in git
+RAW=results/reeval_n10_raw.log          # driver stdout, gitignored
 say() { echo "[$(date -Is)] $*" | tee -a "$LOG"; }
 
 say "waiting for any running eval to finish"
@@ -21,7 +22,7 @@ run() {  # run <run_id> <checkpoint> [extra args]
   if [ -f "results/${id}/results.json" ]; then say "$id SKIP"; return; fi
   say "$id START"
   python src/eval/run_eval.py --policy "$ckpt" --suite libero_object \
-      --n-episodes 10 --seed 1000 --batch-size 1 --run-id "$id" "$@" >> "$LOG" 2>&1 \
+      --n-episodes 10 --seed 1000 --batch-size 1 --run-id "$id" "$@" >> "$RAW" 2>&1 \
     && say "$id DONE" || say "$id FAILED"
 }
 
