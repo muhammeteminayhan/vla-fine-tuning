@@ -233,13 +233,29 @@ Per-run success above is at 5 episodes per task; pooled per-K figures live in
 
 ---
 
-## 7. Known gaps
+## 7. Known gaps, and what happened to them
 
-- **Catastrophic forgetting is not measured.** Stage 2 continues training the
-  stage-1 adapter, so teaching a new part may degrade the tasks the line already
-  knew. Measuring it is cheap — evaluate a stage-2 checkpoint on
-  `libero_spatial` — and it belongs in the limitations section either way.
-- **Eval noise.** Overnight runs use 5 episodes per task (50 total), giving a
-  Wilson width of roughly ±13 points. The published LIBERO protocol is 10 per
-  task; Phase 4 should re-run at that resolution before any number is reported
-  as final.
+Left open at the end of Phase 3, resolved or recorded in Phase 4.
+
+- **Catastrophic forgetting — measured, and it is total.** Stage 2 continues
+  training the stage-1 adapter, so the concern was that teaching a new part
+  degrades the old line. It does not degrade it, it erases it: 38% → 0% on
+  `libero_spatial` after as few as five demonstrations of a new part. See
+  `docs/04-findings.md` §2 and `assets/forgetting.png`.
+
+- **Eval resolution — raised to the published protocol.** Phase 3 ran 5 episodes
+  per task; Phase 4 re-ran every checkpoint at 10. That turned out to be less
+  simple than expected: `--eval.n_episodes` also selects which initial states a
+  rollout gets, so the two sweeps are independent samples rather than a subset
+  and a superset (`docs/01-eval-harness.md` §6). The 10-episode sweep is the one
+  reported.
+
+- **Stage 1 is the most undertrained run in the study — found in Phase 4.**
+  Holding the step budget at 6000 for every run means stage 1 saw 0.47 epochs of
+  its 206,481 frames, against 1.63 for K=40 and 13.0 for K=5. It scores 38% on
+  the suite it was trained on. This does not move the curve — the K=0 reference
+  is stage 1 on `libero_object`, measured at zero — but it does weaken the
+  scenario: the "factory's existing line" works about a third of the time.
+  Fixing it means retraining stage 1 and then all twelve K-shot runs from the
+  new base, roughly 18 hours, which was not spent. The limitation is reported
+  instead.
