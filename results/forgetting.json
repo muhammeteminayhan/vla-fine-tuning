@@ -1,0 +1,56 @@
+{
+  "episodes_per_run": 50,
+  "bars": [
+    {
+      "label": "stage 1\n(before teaching)",
+      "old_line": [
+        0.38,
+        0.2586259584257722,
+        0.5184980497760643,
+        50
+      ],
+      "new_part": [
+        0.0,
+        0.0,
+        0.07135003417431873,
+        50
+      ],
+      "old_run": "forgetting_stage1_spatial",
+      "new_run": "stage1_baseline"
+    },
+    {
+      "label": "+ 5 demos\nof a new part",
+      "old_line": [
+        0.0,
+        0.0,
+        0.07135003417431873,
+        50
+      ],
+      "new_part": [
+        0.58,
+        0.4423319668777783,
+        0.7062520276543307,
+        50
+      ],
+      "old_run": "forgetting_k5_seed0_spatial",
+      "new_run": "stage2_k5_seed0"
+    },
+    {
+      "label": "+ 40 demos\nof a new part",
+      "old_line": [
+        0.0,
+        0.0,
+        0.07135003417431873,
+        50
+      ],
+      "new_part": [
+        0.82,
+        0.6920368054529739,
+        0.902299172675462,
+        50
+      ],
+      "old_run": "forgetting_k40_seed0_spatial",
+      "new_run": "stage2_k40_seed0"
+    }
+  ]
+}

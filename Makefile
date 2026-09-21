@@ -60,6 +60,7 @@ curve:  ## Phase 4: draw the teaching cost curve from results/
 		--pattern 'results/stage2_k*_seed*_n10'
 	@$(CONDA) && python src/analysis/failure_analysis.py \
 		--pattern 'results/stage2_k*_seed*_n10'
+	@$(CONDA) && python src/analysis/plot_forgetting.py
 	@$(CONDA) && python src/analysis/make_index.py
 
 clean-results:  ## Remove derived outputs, keeping checkpoints
