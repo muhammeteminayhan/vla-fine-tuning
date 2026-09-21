@@ -42,7 +42,8 @@ def head(path: Path) -> str:
         return f"{len(t)} tasks, hardest {t[-1]['rate']*100:.0f}%, easiest {t[0]['rate']*100:.0f}%"
     if "runs" in d:
         ok = [r for r in d["runs"] if r.get("ok")]
-        return f"{len(d['runs'])} points, {len(ok)} fitted, largest ok batch {max(r['batch_size'] for r in ok)}"
+        largest = max(r["batch_size"] for r in ok)
+        return f"{len(d['runs'])} points, {len(ok)} fitted, largest ok batch {largest}"
     if "max_feasible_K" in d:
         return (f"{d['total_episodes']} episodes / {d['total_tasks']} tasks, "
                 f"max feasible K = {d['max_feasible_K']}")
