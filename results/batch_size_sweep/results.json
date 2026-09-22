@@ -19,7 +19,7 @@
       "median_step_s": 0.091,
       "steps_per_s": 10.989,
       "samples_per_s": 10.99,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs1.log"
+      "log": "bs1.log (scratch, not retained)"
     },
     {
       "batch_size": 2,
@@ -34,7 +34,7 @@
       "median_step_s": 0.112,
       "steps_per_s": 8.929,
       "samples_per_s": 17.86,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs2.log"
+      "log": "bs2.log (scratch, not retained)"
     },
     {
       "batch_size": 4,
@@ -49,7 +49,7 @@
       "median_step_s": 0.172,
       "steps_per_s": 5.814,
       "samples_per_s": 23.26,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs4.log"
+      "log": "bs4.log (scratch, not retained)"
     },
     {
       "batch_size": 8,
@@ -64,7 +64,7 @@
       "median_step_s": 0.34,
       "steps_per_s": 2.941,
       "samples_per_s": 23.53,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs8.log"
+      "log": "bs8.log (scratch, not retained)"
     },
     {
       "batch_size": 16,
@@ -79,7 +79,7 @@
       "median_step_s": 0.706,
       "steps_per_s": 1.416,
       "samples_per_s": 22.66,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs16.log"
+      "log": "bs16.log (scratch, not retained)"
     },
     {
       "batch_size": 32,
@@ -94,7 +94,7 @@
       "median_step_s": 1.438,
       "steps_per_s": 0.695,
       "samples_per_s": 22.25,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs32.log"
+      "log": "bs32.log (scratch, not retained)"
     },
     {
       "batch_size": 64,
@@ -109,7 +109,7 @@
       "median_step_s": null,
       "steps_per_s": null,
       "samples_per_s": null,
-      "log": "/tmp/claude-1000/-home-eminayhan-Masa-st--vla-fine-tuning/5956f140-45fb-4eba-911c-a9714db31656/scratchpad/bs_sweep/bs64.log"
+      "log": "bs64.log (scratch, not retained)"
     }
   ]
 }
