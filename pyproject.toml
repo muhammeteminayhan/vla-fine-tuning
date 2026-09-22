@@ -3,7 +3,7 @@
 # the tree is navigable and the tooling config has one home.
 
 [project]
-name = "vla-teaching-cost"
+name = "teaching-cost-curve"
 version = "0.1.0"
 description = "How much operator time does it take to teach a robot cell a new part? A measured curve for SmolVLA on held-out LIBERO tasks."
 requires-python = ">=3.12"
@@ -18,7 +18,7 @@ license-files = ["LICENSE"]
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/muhammeteminayhan/vla-fine-tuning"
+Repository = "https://github.com/muhammeteminayhan/teaching-cost-curve"
 
 [tool.ruff]
 line-length = 100

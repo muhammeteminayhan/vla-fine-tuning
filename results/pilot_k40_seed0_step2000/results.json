@@ -46,7 +46,7 @@
     "--eval.n_episodes=5",
     "--eval.batch_size=1",
     "--seed=1000",
-    "--output_dir=/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step2000/lerobot_raw"
+    "--output_dir=results/pilot_k40_seed0_step2000/lerobot_raw"
   ],
   "episodes": [
     {

@@ -20,9 +20,9 @@
           false
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4"
+          "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+          "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+          "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -47,9 +47,9 @@
           false
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
+          "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+          "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+          "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -62,12 +62,12 @@
       "pc_success": 0.0,
       "n_episodes": 6,
       "video_paths": [
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
+        "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+        "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+        "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
+        "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+        "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+        "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
       ],
       "predicted_video_paths": []
     }
@@ -80,12 +80,12 @@
     "eval_s": 62.859917402267456,
     "eval_ep_s": 10.47665305932363,
     "video_paths": [
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
+      "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+      "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+      "results/determinism_A/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
+      "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+      "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+      "results/determinism_A/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4"
     ],
     "predicted_video_paths": []
   }

@@ -26,11 +26,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -61,11 +61,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -96,11 +96,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -131,11 +131,11 @@
           false
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -166,11 +166,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -201,11 +201,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -236,11 +236,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -271,11 +271,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -306,11 +306,11 @@
           true
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -341,11 +341,11 @@
           false
         ],
         "video_paths": [
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
-          "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
+          "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
         ],
         "predicted_video_paths": []
       }
@@ -358,56 +358,56 @@
       "pc_success": 70.0,
       "n_episodes": 50,
       "video_paths": [
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
-        "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
+        "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
       ],
       "predicted_video_paths": []
     }
@@ -420,56 +420,56 @@
     "eval_s": 442.30325150489807,
     "eval_ep_s": 8.846065044403076,
     "video_paths": [
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
-      "/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_0/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_1/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_2/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_3/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_4/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_5/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_6/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_7/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_8/eval_episode_4.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_0.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_1.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_2.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_3.mp4",
+      "results/pilot_k40_seed0_step001500/lerobot_raw/videos/libero_object_9/eval_episode_4.mp4"
     ],
     "predicted_video_paths": []
   }

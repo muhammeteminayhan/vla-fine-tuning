@@ -49,7 +49,7 @@
     "--eval.n_episodes=3",
     "--eval.batch_size=1",
     "--seed=1000",
-    "--output_dir=/home/eminayhan/Masa\u00fcst\u00fc/vla-fine-tuning/results/determinism_B/lerobot_raw",
+    "--output_dir=results/determinism_B/lerobot_raw",
     "--env.task_ids=[0,1]",
     "--rename_map={\"observation.images.image\": \"observation.images.camera1\", \"observation.images.image2\": \"observation.images.camera2\"}"
   ],
