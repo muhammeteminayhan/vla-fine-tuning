@@ -134,6 +134,16 @@ make verify-runs  # prove no training run changed configuration
 Results JSON is committed. Checkpoints and rollout videos are not — they are
 reproducible from the above.
 
+## Licence
+
+MIT — see [LICENSE](LICENSE). That covers the code and documentation in this
+repository. The components it builds on carry their own licences:
+[LeRobot](https://github.com/huggingface/lerobot) and
+[SmolVLA](https://huggingface.co/lerobot/smolvla_base) (Apache-2.0),
+[LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) and the
+`lerobot/libero` dataset. Check those before redistributing anything derived
+from them.
+
 ## A note on how this was measured
 
 The point of the project was an honest number, so the failures are recorded

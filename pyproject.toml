@@ -8,6 +8,8 @@ version = "0.1.0"
 description = "How much operator time does it take to teach a robot cell a new part? A measured curve for SmolVLA on held-out LIBERO tasks."
 requires-python = ">=3.12"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 
 # Deliberately empty. The environment is built from LeRobot's own source install
 # plus a pinned torch wheel, because the sm_120 GPU this runs on needs a
