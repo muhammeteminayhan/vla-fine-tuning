@@ -54,9 +54,18 @@ in the result rather than in a footnote.
 
 ## Before and after
 
-`assets/before_after_k20.mp4` — the same task and the same seed, so both rollouts
-start from an identical scene. Left: the cell's model on a part it has never
-seen. Right: the same model after 20 demonstrations.
+![Before and after 20 demonstrations](assets/before_after_k20.gif)
+
+The same task and the same seed, so both rollouts start from an identical scene.
+Left: the cell's own model on a part it has never seen. Right: the same model
+after 20 demonstrations — about nine minutes of an operator's time.
+
+Real time, not sped up. The success finishes at 8.1 s and holds on its last
+frame; the failure keeps going to the 14 s step limit, which is the typical
+shape of a failure here — not a near miss on time, but twice the time a success
+needs and still nothing in the basket.
+
+Higher quality: [`assets/before_after_k20.mp4`](assets/before_after_k20.mp4).
 
 ---
 

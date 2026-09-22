@@ -78,15 +78,22 @@ def main() -> int:
     tpad_r = f",tpad=stop_mode=clone:stop_duration={pad_r}" if pad_r else ""
 
     vf = (
-        f"[0:v]scale=360:360{tpad_l},{label('BEFORE - factory model, part never seen', 'h-32')}[l];"
+        f"[0:v]scale=360:360{tpad_l},{label('BEFORE - factory model, unseen part', 'h-32')}[l];"
         f"[1:v]scale=360:360{tpad_r},"
-        f"{label('AFTER - 20 demonstrations (9 operator min)', 'h-32')}[r];"
+        f"{label('AFTER - 20 demonstrations (9 min)', 'h-32')}[r];"
         f"[l][r]hstack=inputs=2:shortest=1,pad=iw:ih+36:0:36:black,{label(name, '9')}"
     )
 
     out = REPO / a.out
     out.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(bv), "-i", str(av),
+    # The eval videos carry one frame per environment step but are tagged 80 fps,
+    # so playing them as-is runs the rollout at 4x and hides the thing the clip
+    # exists to show: the failure using the full 280-step budget while the
+    # success finishes in 162. Reinterpreting the input rate as the 20 Hz control
+    # rate plays them in real time.
+    cmd = ["ffmpeg", "-y", "-v", "error",
+           "-r", str(a.fps), "-i", str(bv),
+           "-r", str(a.fps), "-i", str(av),
            "-filter_complex", vf,
            "-r", str(a.fps), "-pix_fmt", "yuv420p", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True)
