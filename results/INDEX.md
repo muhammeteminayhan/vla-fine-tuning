@@ -14,18 +14,26 @@ success flags, episode lengths and the exact command that produced them.
 | `results/batch_size_sweep/results.json` | 7 points, 6 fitted, largest ok batch 32 | docs/03-training.md §1 |
 | `results/compute_budget.json` | 22.93 samples/s plateau | docs/03-training.md §2 |
 | `results/n_action_steps_comparison/results.json` | 50: 7.76s/ep vs 10: 11.15s/ep | CLAUDE.md §3, docs/03-training.md §3 |
-| `results/teaching_cost_curve.json` | K=5:65.3%, K=10:70.7%, K=20:75.3%, K=40:78.7% | docs/04-findings.md §1, README |
-| `results/task_difficulty.json` | 10 tasks, hardest 50%, easiest 93% | docs/04-findings.md §5 |
-| `results/failure_analysis.json` | 165 failures, all at the 280-step cap | docs/04-findings.md §4 |
+| `results/teaching_cost_curve.json` | K=5:66.7%, K=10:67.0%, K=20:73.0%, K=40:76.3% | docs/04-findings.md §1, README |
+| `results/task_difficulty.json` | 10 tasks, hardest 42%, easiest 91% | docs/04-findings.md §5 |
+| `results/failure_analysis.json` | 351 failures, all at the 280-step cap | docs/04-findings.md §4 |
 
 ## Teaching-cost runs (10 episodes/task)
 
 | run | result |
 |---|---|
 | `results/stage2_k10_seed0_n10/` | 71/100 = 71.0% success |
+| `results/stage2_k10_seed1_n10/` | 68/100 = 68.0% success |
+| `results/stage2_k10_seed2_n10/` | 62/100 = 62.0% success |
 | `results/stage2_k20_seed0_n10/` | 64/100 = 64.0% success |
+| `results/stage2_k20_seed1_n10/` | 80/100 = 80.0% success |
+| `results/stage2_k20_seed2_n10/` | 75/100 = 75.0% success |
 | `results/stage2_k40_seed0_n10/` | 73/100 = 73.0% success |
+| `results/stage2_k40_seed1_n10/` | 85/100 = 85.0% success |
+| `results/stage2_k40_seed2_n10/` | 71/100 = 71.0% success |
 | `results/stage2_k5_seed0_n10/` | 61/100 = 61.0% success |
+| `results/stage2_k5_seed1_n10/` | 64/100 = 64.0% success |
+| `results/stage2_k5_seed2_n10/` | 75/100 = 75.0% success |
 
 ## Teaching-cost runs (5 episodes/task, superseded)
 

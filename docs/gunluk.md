@@ -523,3 +523,74 @@ dedim, K=20'nin üçüncü seed'i gelince örüntü çöktü (12, 4, 22, 10 — 
 
 **Sırada ne var.** Faz 3 kapısı geçti. Faz 4 (hata analizi + nihai rapor) için
 onay bekliyorum.
+
+---
+
+## 2026-09-22 — Faz 4 ve 5: sonuçlar, dürüstlük, teslim
+
+### Blok 13 — 10 episode/görev ve eğrinin gerçek şekli
+
+**Ne yaptım.** 13 checkpoint'i yayınlanmış protokolde (görev başına 10 episode)
+yeniden değerlendirdim; nokta başına 300 episode. Forgetting'i ölçtüm, görev
+zorluğunu ve hata dağılımını çıkardım, iki figürü ürettim.
+
+**Sonuç, 5-episode versiyonundan daha net.** Artışlar: +66.7 puan (0→5), sonra
+**+0.3**, +6.0, +3.3. K=5 ile K=10 ayırt edilemiyor. Yani "kaç demo gerekir"
+sorusunun cevabı "bir avuç" ve gerisi azalan getiri.
+
+**Neden çözünürlüğü yükseltmek gerekti.** 5 episode ile nokta başına Wilson
+genişliği ±13 puandı ve K=10 ile K=20 arasında konuşamıyorduk. 10 episode ve 3
+seed ile ±5 puana indi. Eğrinin düzlüğü ancak bu çözünürlükte güvenle
+söylenebilir hale geldi.
+
+**Kendi hatam — sekiz saat kaybettiren sessiz bir tuzak.** Teşhis koşusunu
+"yeniden evaller bitince başla" diye kuyruğa almıştım ve bekleme koşulu
+`pgrep -f reeval_n10` idi. O komutun kendi komut satırı deseni içeriyordu, yani
+süreç **kendini bekledi**. Evaller gece 01:48'de bitmişti; teşhis sabah 10:00'a
+kadar hiç başlamadı. Aynı `-f` tuzağına bu oturumda `pkill` ile iki kez daha
+düşmüştüm ama onlar gürültülü hatalardı, bu sessizdi. Ders: bir beklemeyi bir
+**sürece** değil, bir **çıktı dosyasının varlığına** bağla.
+
+**Yeni kavram — vazgeçmeden önce ikinci yolu denemek.** "Hata tiplerini
+ölçemiyorum" demiştim çünkü eval videosu sadece agentview. Sonra LeRobot'un
+`--eval.recording` seçeneğini buldum: `eef_pos`, `gripper_qpos` **ve bilek
+kamerası** kaydediyor — tam da eksik olan şey. Denedim ve upstream bir hataya
+çarptı: LIBERO'nun feature anahtarları `/` içeriyor, LeRobot'un dataset
+doğrulayıcısı bunu reddediyor. Yani sınırlılık gerçek, ama artık "bakmadım"
+değil "iki yol denedim, ikisi de şu sebeple kapalı" diye yazılı. Bir sınırlılığı
+raporlamakla, onu araştırdıktan sonra raporlamak arasındaki fark bu.
+
+---
+
+### Blok 14 — Repo'yu teslim edilebilir hale getirme
+
+**Ne yaptım.** README (ana grafik en üstte, iş problemi, dürüst sınırlılıklar),
+`make reproduce` zinciri, 15 değişmez testi, CI, ruff temizliği, `wilson()`
+tekrarının kaldırılması, log şişkinliğinin giderilmesi (izlenen `results/`
+24 MB → 1.2 MB), forgetting figürü, sonuç indeksi.
+
+**Neden test yazdım.** Portföy repo'sunda testin asıl işi "kod çalışıyor"
+demek değil; **raporlanan sayıların dayandığı varsayımları korumak.** On beş
+testin her biri, sessizce bozulursa makul görünen ama başka bir şey ölçen
+sayılar üretecek bir özelliği bekliyor: Wilson'ın sıfırda dejenere olmaması,
+alt-kümelerin deterministik ve iç içe kalması, held-out sızıntısı olmaması,
+operatör süresinin `fps=10` yerine 20 Hz'den türemesi. Altısını bozuk veriyle
+sınadım; hepsi yakalıyor. Yakalamayan bir test, testin olmamasından kötüdür
+çünkü güvence gibi okunur.
+
+**Temiz klon denemesi üç hata buldu.** Repo'yu boş bir dizine klonlayıp bir
+reviewer gibi koşturunca: koruma testim `results/` içinde tesadüfen iki
+çözünürlük bulunduğu için geçiyormuş (kod doğru olduğu için değil),
+`plot_curve` desenleri cwd'yi yok sayıyormuş, ve CI ortamında `matplotlib`
+yokmuş. Üçü de "bende çalışıyor" ile gizlenmişti.
+
+**En değerli yakalama.** `results/INDEX.md`'yi üretirken her dosyanın başlık
+sayılarını yanına yazdırdım ve K=20'nin %75.3'ten %70.8'e kaydığını gördüm.
+Sebep: `plot_curve`'ün varsayılan deseni hem 5- hem 10-episode koşularını
+yakalıyor ve **iki farklı deneyin ortalamasını** alıyordu. Hata vermeden.
+Artık üç analiz scripti de farklı çözünürlükleri havuzlamayı reddediyor ve bir
+test bunu bekliyor. Sayıları görünür kılmak, onları saklamaktan daha iyi bir
+hata detektörü.
+
+**Sırada ne var.** Proje teslim edildi. Açık kalan işler README'nin
+"Honest limitations" bölümünde yazılı.

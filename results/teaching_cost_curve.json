@@ -3,77 +3,77 @@
     {
       "K": 5,
       "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 98,
-      "success_rate": 0.6533333333333333,
-      "wilson_lo": 0.5742027248462458,
-      "wilson_hi": 0.7248061258157337,
+      "n_episodes": 300,
+      "n_success": 200,
+      "success_rate": 0.6666666666666666,
+      "wilson_lo": 0.6115114164576771,
+      "wilson_hi": 0.7176074402097443,
       "seed_rates": [
-        0.58,
-        0.68,
-        0.7
+        0.61,
+        0.64,
+        0.75
       ],
-      "seed_min": 0.58,
-      "seed_max": 0.7,
+      "seed_min": 0.61,
+      "seed_max": 0.75,
       "operator_minutes_per_task": 2.28
     },
     {
       "K": 10,
       "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 106,
-      "success_rate": 0.7066666666666667,
-      "wilson_lo": 0.6293750243784035,
-      "wilson_hi": 0.7736369047746994,
+      "n_episodes": 300,
+      "n_success": 201,
+      "success_rate": 0.67,
+      "wilson_lo": 0.6149348137768542,
+      "wilson_hi": 0.7207664200239157,
       "seed_rates": [
-        0.72,
+        0.71,
         0.68,
-        0.72
+        0.62
       ],
-      "seed_min": 0.68,
-      "seed_max": 0.72,
+      "seed_min": 0.62,
+      "seed_max": 0.71,
       "operator_minutes_per_task": 4.56
     },
     {
       "K": 20,
       "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 113,
-      "success_rate": 0.7533333333333333,
-      "wilson_lo": 0.6785952428848271,
-      "wilson_hi": 0.8154193799480086,
+      "n_episodes": 300,
+      "n_success": 219,
+      "success_rate": 0.73,
+      "wilson_lo": 0.6770872468075737,
+      "wilson_hi": 0.7770967753934679,
       "seed_rates": [
         0.64,
-        0.86,
-        0.76
+        0.8,
+        0.75
       ],
       "seed_min": 0.64,
-      "seed_max": 0.86,
+      "seed_max": 0.8,
       "operator_minutes_per_task": 9.12
     },
     {
       "K": 40,
       "n_seeds": 3,
-      "n_episodes": 150,
-      "n_success": 118,
-      "success_rate": 0.7866666666666666,
-      "wilson_lo": 0.7143779835916132,
-      "wilson_hi": 0.8446385632981747,
+      "n_episodes": 300,
+      "n_success": 229,
+      "success_rate": 0.7633333333333333,
+      "wilson_lo": 0.712095744869948,
+      "wilson_hi": 0.8079120486645778,
       "seed_rates": [
-        0.82,
-        0.82,
-        0.72
+        0.73,
+        0.85,
+        0.71
       ],
-      "seed_min": 0.72,
-      "seed_max": 0.82,
+      "seed_min": 0.71,
+      "seed_max": 0.85,
       "operator_minutes_per_task": 18.25
     }
   ],
   "baseline": {
     "success_rate": 0.0,
-    "n_episodes": 50,
+    "n_episodes": 100,
     "wilson_lo": 0.0,
-    "wilson_hi": 0.07135003417431873
+    "wilson_hi": 0.03699480747600191
   },
   "operator_time_model": {
     "demo_seconds_measured": 7.37,

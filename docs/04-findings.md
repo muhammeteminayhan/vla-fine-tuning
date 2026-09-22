@@ -1,75 +1,76 @@
 # Phase 4 — Results and Honest Reading
 
-**Date:** 2026-09-21
-**Status:** in progress. The curve and the findings below are final at 5
-episodes per task; a re-evaluation at the published 10-per-task resolution is
-running.
+**Date:** 2026-09-22
+**Resolution:** 10 episodes per task, the published LIBERO protocol, over three
+training seeds — 300 evaluation episodes per point.
+**Status:** complete.
 
-Every number traces to a file under `results/`.
+Every number traces to a file under `results/`; `results/INDEX.md` is the map.
 
 ---
 
 ## 1. The teaching cost curve
 
-`results/teaching_cost_curve.json`, figure `assets/teaching_cost_curve.png`.
-Three training seeds, 150 evaluation episodes per point.
+`results/teaching_cost_curve.json` · figure `assets/teaching_cost_curve.png`
 
 | K | operator min / new task | success | Wilson 95% | per-seed |
 |---|---|---|---|---|
-| 0 | 0 | 0/50 = 0% | [0.0%, 7.1%] | — |
-| 5 | 2.3 | 98/150 = 65.3% | [57.4%, 72.5%] | 58%, 68%, 70% |
-| 10 | 4.6 | 106/150 = 70.7% | [62.9%, 77.4%] | 68%, 72%, 72% |
-| 20 | 9.1 | 113/150 = 75.3% | [67.9%, 81.5%] | 64%, 76%, 86% |
-| 40 | 18.2 | 118/150 = 78.7% | [71.4%, 84.5%] | 72%, 82%, 82% |
+| 0 | 0.0 | 0/100 = 0.0% | [0.0%, 3.7%] | — |
+| 5 | 2.3 | 200/300 = 66.7% | [61.2%, 71.8%] | 61%, 64%, 75% |
+| 10 | 4.6 | 201/300 = 67.0% | [61.5%, 72.1%] | 62%, 68%, 71% |
+| 20 | 9.1 | 219/300 = 73.0% | [67.7%, 77.7%] | 64%, 75%, 80% |
+| 40 | 18.2 | 229/300 = 76.3% | [71.2%, 80.8%] | 71%, 73%, 85% |
 
-**The curve saturates early.** Increments are +65 points from 0 to 5
-demonstrations, then +5.4, +4.6 and +3.4. Doubling the operator's time from 9 to
-18 minutes per part buys 3.4 points, and the K=5 and K=40 intervals almost
-touch. If the question is "how much demonstration does a new part need", the
-answer this data supports is **a handful, and the rest is diminishing returns**.
+**Almost all of the value arrives in the first five demonstrations.** The
+increments are +66.7 points from zero to five, then **+0.3**, then +6.0, then
++3.3. K=5 and K=10 are indistinguishable — their intervals very nearly coincide.
+Going from five demonstrations to forty costs the operator eight times as much
+time and buys 9.6 points.
+
+If a plant is deciding how much demonstration a new part needs, this data says
+*a handful*, and says it with 300 episodes per point rather than an anecdote.
+
+The curve rises monotonically, but only the K=5 → K=20 and K=5 → K=40 steps are
+separated by their intervals. The rest is within sampling noise.
 
 ---
 
 ## 2. The finding that most qualifies the claim: teaching erases the old line
 
-`results/forgetting_*_spatial/results.json`.
+`results/forgetting.json` · figure `assets/forgetting.png`
+(measured at 5 episodes per task, 50 episodes per bar)
 
 Evaluated on `libero_spatial`, one of the three suites stage 1 was trained on:
 
 | model | libero_spatial (old line) | libero_object (new part) |
 |---|---|---|
 | stage 1, before teaching | 19/50 = **38%** [25.9%, 51.8%] | 0% |
-| + K=5 of the new part | 0/50 = **0%** [0.0%, 7.1%] | 58% |
-| + K=40 of the new part | 0/50 = **0%** [0.0%, 7.1%] | 82% |
+| + 5 demonstrations of a new part | 0/50 = **0%** [0.0%, 7.1%] | 58% |
+| + 40 demonstrations of a new part | 0/50 = **0%** [0.0%, 7.1%] | 82% |
 
 **Teaching one new part destroys the old capability completely**, and five
-demonstrations are enough to do it. The intervals are disjoint, so this is not a
-measurement artefact.
+demonstrations are enough to do it. The intervals are disjoint.
 
-It is also a direct consequence of the design rather than a surprise. Stage 2
-continues training the *same* LoRA adapter (verified in Phase 3: LeRobot logs
-"PEFT adapter already loaded from checkpoint, skipping wrap_with_peft"), at
-lr=1e-3, for 6000 steps, on nothing but the new task's data. The adapter is
-simply overwritten.
+This follows from the design rather than contradicting it. Stage 2 continues
+training the *same* LoRA adapter — LeRobot logs "PEFT adapter already loaded from
+checkpoint, skipping wrap_with_peft" — at lr=1e-3, for 6000 steps, on nothing but
+the new task's data. The adapter is overwritten.
 
-**What this does to the business argument.** The headline — a new part costs
-about two operator-minutes of demonstration instead of an integrator's invoice —
-survives, but only with this attached: *the cell forgets its previous work in
-the process.* A practical answer exists, and LoRA makes it cheap: each adapter
-is **11.9 MB**, so a plant could keep one adapter per part and load the right
-one. But that is a different product from "one model that knows the whole line",
-and the report must say so rather than quietly imply the latter.
-
-Measured on one seed per condition. Given 0/50 in both, one seed is enough to
-establish the effect, not its precise size.
+**What it does to the business argument.** The headline survives: a new part
+costs roughly two operator-minutes of demonstration rather than an integrator's
+invoice. But it survives only with this attached — *the cell forgets its previous
+work in the process*. A practical answer exists and LoRA makes it cheap: each
+adapter is **11.9 MB**, so a plant could keep one per part and load the right one.
+That is a different product from "one model that knows the whole line", and
+saying so is the difference between a result and a sales pitch.
 
 ---
 
-## 3. Stage 1 is undertrained, and that limits what the K=0 line means
+## 3. Stage 1 is undertrained, which limits what the scenario models
 
 The stage-1 model scores **38%** on the suite it was trained on. It is the most
 undertrained run in the study: the step budget was fixed at 6000 for every run,
-but stage 1's dataset is 3.5x larger than K=40's.
+while stage 1's dataset is 3.5x larger than K=40's.
 
 | run | frames | epochs at 96,000 samples |
 |---|---|---|
@@ -77,71 +78,102 @@ but stage 1's dataset is 3.5x larger than K=40's.
 | K=40 | 59,017 | 1.63 |
 | K=5 | 7,377 | 13.0 |
 
-This does not affect the curve — the K=0 reference is "stage 1 on
-`libero_object`", measured at 0/50, and the model genuinely cannot do the new
-parts. But the scenario framing is weaker than intended. Honest wording: stage 1
-gave the model familiarity with LIBERO-style manipulation; it did not make it
-competent at its own suite.
+The curve is unaffected — the K=0 reference is stage 1 on `libero_object`,
+measured at 0/100 — and the model genuinely cannot do the new parts. But the
+framing is weaker than intended. Accurate wording: stage 1 gave the model
+familiarity with LIBERO-style manipulation; it did not make it competent at its
+own suite. Fixing it means retraining stage 1 and all twelve K-shot runs from the
+new base, roughly 18 hours, which was not spent.
 
 ---
 
 ## 4. Failures are not near-misses
 
-`results/failure_analysis.json`.
+`results/failure_analysis.json`
 
 | | n | mean steps |
 |---|---|---|
-| successes | 435 | 139.9 (median 138) |
-| failures | 165 | 280.0 — all at the cap |
+| successes | 849 | 141.6 (median 137) |
+| failures | 351 | 280.0 — all at the cap |
 
-The environment only terminates early on success, so failures reaching the cap
-is expected. The informative part is the ratio: a typical success needs 138
-steps against a 280-step budget, so **every failure had about twice the time a
-success needs**. A larger step budget would not convert them.
+The environment terminates early only on success, so failures reaching the cap
+is expected. The informative part is the ratio: a typical success needs 137 steps
+against a 280-step budget, so **every failure had about twice the time a success
+needs**. A larger step budget would not convert them.
 
-Failure rate falls steadily with K — 34.7%, 29.3%, 24.7%, 21.3% at K = 5, 10,
-20, 40 — and concentrates heavily on two tasks.
+Failure rate falls with K, and the fall is small after the first jump:
+
+| K | failure rate |
+|---|---|
+| 5 | 100/300 = 33.3% |
+| 10 | 99/300 = 33.0% |
+| 20 | 81/300 = 27.0% |
+| 40 | 71/300 = 23.7% |
 
 ---
 
 ## 5. Task difficulty is real, not noise
 
-`results/task_difficulty.json`, pooled over all 12 runs, 45 episodes per task.
+`results/task_difficulty.json`, pooled over all twelve runs, 120 episodes per task.
 
 | task | success | Wilson 95% |
 |---|---|---|
-| tomato sauce | 43/45 = 96% | [85.2%, 98.8%] |
-| salad dressing | 41/45 = 91% | [79.3%, 96.5%] |
-| chocolate pudding / cream cheese / ketchup | 35/45 = 78% | [63.7%, 87.5%] |
-| orange juice | 33/45 = 73% | [59.0%, 84.0%] |
-| butter / alphabet soup | 31/45 = 69% | [54.3%, 80.5%] |
-| milk | 23/45 = 51% | [37.0%, 65.0%] |
-| **bbq sauce** | 18/45 = **40%** | [27.0%, 54.5%] |
+| cream cheese | 109/120 = 91% | [84.3%, 94.8%] |
+| salad dressing | 104/120 = 87% | [79.4%, 91.6%] |
+| tomato sauce | 103/120 = 86% | [78.5%, 91.0%] |
+| chocolate pudding | 91/120 = 76% | [67.4%, 82.6%] |
+| orange juice | 85/120 = 71% | [62.2%, 78.2%] |
+| alphabet soup | 85/120 = 71% | [62.2%, 78.2%] |
+| butter | 83/120 = 69% | [60.4%, 76.7%] |
+| ketchup | 75/120 = 62% | [53.6%, 70.6%] |
+| bbq sauce | 63/120 = 52% | [43.6%, 61.2%] |
+| **milk** | 51/120 = **42%** | [34.0%, 51.4%] |
 
-56 points between hardest and easiest, with disjoint intervals. Per-K, per-seed
-task rates rest on 10-15 episodes where the interval is ~50 points wide, so only
-the pooled view supports any ranking; the cost is that pooling mixes K.
+48 points between hardest and easiest, with disjoint intervals: difficulty is a
+real effect. Pooling mixes K, so this answers "which tasks are hard for this
+method", not "how difficulty changes with K".
 
-The same episodes fail across independent training seeds — task 3's episodes 1
-and 3 fail in all three K=40 runs — which points at the initial scene
-configuration rather than at training randomness.
+A caution about reading rankings from smaller samples: the 5-episode sweep put
+bbq sauce hardest at 40% and tomato sauce easiest at 96%. At 45 episodes per task
+those intervals were wide enough that the ordering was not reliable, and the
+10-episode sweep — a different sample, see §6 — reorders the middle of the table
+while keeping milk and bbq sauce at the bottom.
 
 ---
 
 ## 6. What could not be measured, and why
 
 **Failure modes are not classified.** CLAUDE.md asks for failures to be sorted
-into wrong object, missed grasp, early release and missed target. That cannot be
-done reliably from what this harness keeps: the eval video is the agentview
-only, 360x360 (`LiberoEnv.render` returns the first camera in the observation
-dict), with no gripper state and no object poses recorded.
+into wrong object, missed grasp, early release and missed target. Two attempts,
+both recorded rather than quietly dropped:
 
-Failure strips for the two hardest tasks show the arm reaching the object
-cluster and leaving with the basket still empty, in every seed, which is
-consistent with grasp failure. That is an impression from eight frames, not a
-measurement, and it is recorded as such. A rigorous classification needs the
-harness to log object poses or the wrist camera, which would mean re-running the
-evaluations.
+1. *From the rendered video.* The eval video is the agentview only, 360×360
+   (`LiberoEnv.render` returns the first camera in the observation dict), with no
+   gripper state. Cropped frame strips (`src/analysis/failure_strips.py`) show the
+   arm reaching the object cluster and leaving with the basket still empty, in
+   every seed — consistent with grasp failure, but that is an impression from
+   eight frames, not a measurement.
+
+2. *From a recorded rollout dataset.* `--eval.recording=true` would capture
+   `eef_pos`, `gripper_qpos` **and the wrist camera**, which is exactly what the
+   video lacks. It fails upstream:
+
+   ```
+   ValueError: Feature names should not contain '/'. Found '/' in
+   'robot_state/eef/pos', 'robot_state/gripper/qpos', 'pixels/agentview_image', ...
+   ```
+
+   LIBERO's feature keys are nested with `/`, and LeRobot's dataset validator
+   (`utils/feature_utils.py:44`) rejects them, so recording is unusable for this
+   environment at commit `2774d9bd`. Classifying failure modes properly needs
+   either that fixed upstream or a custom rollout loop.
 
 **Single benchmark, single model, simulation only.** No real hardware, no
-sim-to-real measurement, one policy architecture, one benchmark suite.
+sim-to-real measurement, one policy architecture, one benchmark suite, one
+held-out suite of ten tasks.
+
+**The operator-time axis is mostly an assumption.** 7.4 s of demonstration is
+measured; 20 s of reset per demonstration is assumed and cannot be measured from
+this dataset. At that value the assumption is 73% of the figure. Changing it
+rescales the axis without changing the curve's shape or where it flattens —
+`docs/02-experiment-design.md` §4 carries the sensitivity table.

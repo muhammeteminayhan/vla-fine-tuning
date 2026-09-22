@@ -1,76 +1,76 @@
 {
   "success_steps": {
-    "n": 435,
-    "mean": 139.89655172413794,
-    "median": 138,
-    "min": 94,
-    "max": 275
+    "n": 849,
+    "mean": 141.62190812720848,
+    "median": 137,
+    "min": 100,
+    "max": 278
   },
   "failure_steps": {
-    "n": 165,
+    "n": 351,
     "mean": 280,
     "cap": 280,
-    "at_cap": 165
+    "at_cap": 351
   },
-  "time_headroom_ratio": 2.028985507246377,
+  "time_headroom_ratio": 2.0437956204379564,
   "per_k": {
     "5": {
-      "n": 150,
-      "fail": 52
+      "n": 300,
+      "fail": 100
     },
     "10": {
-      "n": 150,
-      "fail": 44
+      "n": 300,
+      "fail": 99
     },
     "20": {
-      "n": 150,
-      "fail": 37
+      "n": 300,
+      "fail": 81
     },
     "40": {
-      "n": 150,
-      "fail": 32
+      "n": 300,
+      "fail": 71
     }
   },
   "per_task": {
     "0": {
-      "n": 60,
-      "fail": 16
+      "n": 120,
+      "fail": 35
     },
     "1": {
-      "n": 60,
-      "fail": 12
+      "n": 120,
+      "fail": 45
     },
     "2": {
-      "n": 60,
-      "fail": 12
+      "n": 120,
+      "fail": 11
     },
     "3": {
-      "n": 60,
-      "fail": 30
+      "n": 120,
+      "fail": 57
     },
     "4": {
-      "n": 60,
-      "fail": 17
+      "n": 120,
+      "fail": 35
     },
     "5": {
-      "n": 60,
-      "fail": 30
+      "n": 120,
+      "fail": 69
     },
     "6": {
-      "n": 60,
-      "fail": 4
+      "n": 120,
+      "fail": 16
     },
     "7": {
-      "n": 60,
-      "fail": 20
+      "n": 120,
+      "fail": 37
     },
     "8": {
-      "n": 60,
-      "fail": 8
+      "n": 120,
+      "fail": 17
     },
     "9": {
-      "n": 60,
-      "fail": 16
+      "n": 120,
+      "fail": 29
     }
   },
   "limitation": "Failure *modes* are not classified here. The eval video is the agentview only (LiberoEnv.render returns the first camera), at 360x360, with no gripper state or object poses recorded. Separating 'wrong object' from 'missed grasp' reliably would need the harness to log object poses or the wrist camera."
